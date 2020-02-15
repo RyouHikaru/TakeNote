@@ -14,4 +14,18 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="menu_user_profile">User Profile</string>
+
+
+    <string name="logout_label">Logout</string>
+    <string name="login_label">Login</string>
+    <string name="signup_label">Sign Up</string>
+    <string name="un_label">Username</string>
+    <string name="pw_label">Password</string>
+    <string name="un_hint">Enter username</string>
+    <string name="pw_hint">Enter password</string>
+    <string name="back_button_label">Back</string>
+    <string name="cancel_button_label">Cancel</string>
+    <string name="exit_label">Exit</string>
+    <string name="user_info_label">User info</string>
+    <string name="settings_label">Settings</string>
 </resources>

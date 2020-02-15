@@ -8,10 +8,10 @@
 
     <ImageView
         android:id="@+id/upImageView"
-        android:layout_width="match_parent"
-        android:layout_height="172dp"
+        android:layout_width="wrap_content"
+        android:layout_height="147dp"
         android:paddingTop="30dp"
-        app:srcCompat="@drawable/tn_icon_xl" />
+        app:srcCompat="@drawable/ic_anonymous" />
 
     <TextView
         android:id="@+id/basicInfoTextView"
