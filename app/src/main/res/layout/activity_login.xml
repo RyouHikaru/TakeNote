@@ -14,17 +14,15 @@
         android:ems="10"
         android:hint="@string/un_hint"
         android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/unTextView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/unTextView" />
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/selector_button"
         android:text="@string/login_label"
         app:layout_constraintEnd_toStartOf="@+id/cancelButton"
@@ -36,7 +34,7 @@
         android:id="@+id/cancelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/selector_button"
         android:text="@string/cancel_button_label"
         android:textColor="@color/black"
@@ -49,41 +47,39 @@
         android:id="@+id/unTextView"
         android:layout_width="118dp"
         android:layout_height="36dp"
+        android:layout_marginTop="35dp"
         android:text="@string/un_label"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.337"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.136" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <TextView
         android:id="@+id/pwTextView"
         android:layout_width="117dp"
         android:layout_height="40dp"
+        android:layout_marginTop="20dp"
         android:text="@string/pw_label"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.34"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/unEditText"
-        app:layout_constraintVertical_bias="0.079" />
+        app:layout_constraintTop_toBottomOf="@+id/unEditText" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="177dp"
         android:layout_height="84dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="40dp"
         android:contentDescription="@string/login_label"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.056"
         app:srcCompat="@drawable/login_text" />
 
     <EditText
@@ -93,11 +89,9 @@
         android:ems="10"
         android:hint="@string/pw_hint"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pwTextView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/pwTextView" />
 
     <TextView
         android:id="@+id/signUpView"
