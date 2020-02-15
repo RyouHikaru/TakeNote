@@ -36,4 +36,5 @@
     <string name="email">Email:</string>
     <string name="course">Course:</string>
     <string name="user_display_profile">User Display Profile</string>
+    <string name="about_us">About Us</string>
 </resources>

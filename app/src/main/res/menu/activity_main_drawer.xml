@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
@@ -22,7 +23,7 @@
             android:title="@string/menu_tools" />
     </group>
 
-    <item android:title="About Us">
+    <item android:title="@string/about_us">
         <menu>
             <item
                 android:id="@+id/nav_share"
@@ -32,6 +33,9 @@
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
                 android:title="@string/menu_send" />
+            <item
+                android:id="@+id/nav_logout"
+                android:title="@string/logout_label" />
         </menu>
     </item>
 
