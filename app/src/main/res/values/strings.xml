@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NavigationDrawerDEMO</string>
+    <string name="app_name">Take Note</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Take Note</string>
@@ -29,4 +29,11 @@
     <string name="user_info_label">User info</string>
     <string name="settings_label">Settings</string>
     <string name="click_here_to_sign_up">Click here to sign up</string>
+    <string name="basic_information">Basic Information</string>
+    <string name="name">Name:</string>
+    <string name="address">Address:</string>
+    <string name="birthdate">Birthdate:</string>
+    <string name="email">Email:</string>
+    <string name="course">Course:</string>
+    <string name="user_display_profile">User Display Profile</string>
 </resources>
