@@ -1,16 +1,16 @@
-package com.example.navigationdrawerdemo.ui.home;
+package com.example.navigationdrawerdemo.ui.user_profile;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class UserProfileViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public UserProfileViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Welcome Take Noter!");
+        mText.setValue("User Profile Fragment");
     }
 
     public LiveData<String> getText() {

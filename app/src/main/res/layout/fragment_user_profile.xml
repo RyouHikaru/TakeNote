@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tn_bg"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/upImageView"
+        android:layout_width="match_parent"
+        android:layout_height="172dp"
+        android:paddingTop="30dp"
+        app:srcCompat="@drawable/tn_icon_xl" />
+
+    <TextView
+        android:id="@+id/basicInfoTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="30sp"
+        android:paddingTop="20sp"
+        android:text="Basic Information"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="45sp"
+        android:paddingTop="10sp"
+        android:text="Name:"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/birthdateTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="45sp"
+        android:paddingTop="10sp"
+        android:text="Birthdate: "
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/addressTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="45sp"
+        android:paddingTop="10sp"
+        android:text="Address: "
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/emailTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="45sp"
+        android:paddingTop="10sp"
+        android:text="Email: "
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/courseTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="45sp"
+        android:paddingTop="10sp"
+        android:text="Course: "
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/upReturnButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="150sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginRight="150sp"
+        android:text="Return" />
+</LinearLayout>
