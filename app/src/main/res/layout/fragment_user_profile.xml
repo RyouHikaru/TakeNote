@@ -11,7 +11,7 @@
         android:layout_height="147dp"
         android:contentDescription="@string/user_display_profile"
         android:paddingTop="30dp"
-        app:srcCompat="@drawable/ic_anonymous" />
+        app:srcCompat="@drawable/ic_account_circle_black_24dp" />
 
     <TextView
         android:id="@+id/basicInfoTextView"

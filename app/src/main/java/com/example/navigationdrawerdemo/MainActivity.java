@@ -26,6 +26,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.Objects;
+
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     int clickedNavItem;
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new NotesFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_note);
-            getSupportActionBar().setTitle(R.string.menu_home);
+            Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.menu_home);
         }
 
         drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
@@ -72,28 +74,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     case R.id.nav_note:
                         getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).
                                 replace(R.id.fragment_container, new NotesFragment()).commit();
-                        getSupportActionBar().setTitle(R.string.notes);
+                        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.notes);
 
                         break;
                     case R.id.nav_user_profile:
                         getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).
                                 replace(R.id.fragment_container, new UserProfileFragment()).commit();
-                        getSupportActionBar().setTitle(R.string.menu_user_profile);
+                        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.menu_user_profile);
                         break;
                     case R.id.nav_reminder:
                         getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).
                                 replace(R.id.fragment_container, new RemindersFragment()).commit();
-                        getSupportActionBar().setTitle(R.string.reminders);
+                        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.reminders);
                         break;
                     case R.id.nav_archive:
                         getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).
                                 replace(R.id.fragment_container, new ArchiveFragment()).commit();
-                        getSupportActionBar().setTitle(R.string.archive);
+                        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.archive);
                         break;
                     case R.id.nav_share:
                         getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).
                                 replace(R.id.fragment_container, new ShareFragment()).commit();
-                        getSupportActionBar().setTitle(R.string.menu_share);
+                        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.menu_share);
                         break;
                     case R.id.nav_logout:
                         exit();
@@ -114,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.options_menu, menu);
         return true;
     }
 
