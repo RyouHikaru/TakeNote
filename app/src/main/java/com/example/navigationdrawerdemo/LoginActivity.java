@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
-    private static int TIME_DELAY = 2000;
+    private static int TIME_DELAY = 500;   // temp
     Button loginButton;
     Button cancelButton;
     TextView signUpView;

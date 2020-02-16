@@ -8,10 +8,12 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.navigationdrawerdemo.MainActivity;
 import com.example.navigationdrawerdemo.R;
 
 public class HomeFragment extends Fragment {
