@@ -17,7 +17,6 @@ import androidx.core.view.GravityCompat;
 import com.example.navigationdrawerdemo.ui.archive.ArchiveFragment;
 import com.example.navigationdrawerdemo.ui.notes.NotesFragment;
 import com.example.navigationdrawerdemo.ui.reminder.RemindersFragment;
-import com.example.navigationdrawerdemo.ui.share.ShareFragment;
 import com.example.navigationdrawerdemo.ui.user_profile.UserProfileFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -93,12 +92,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.archive);
                         break;
                     case R.id.nav_share:
-                        getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).
-                                replace(R.id.fragment_container, new ShareFragment()).commit();
-                        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.menu_share);
+                        showShareDialog();
+//                        Toast.makeText(MainActivity.this, "Sharing is caring", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_logout:
-                        exit();
+                        showLogoutDialog();
                         break;
                 }
             }
@@ -146,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    public void exit() {
+    public void showLogoutDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle("Confirm Logout?");
         alertDialogBuilder.setMessage("Are you sure you want to logout?");
@@ -170,6 +168,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(MainActivity.this,"No", Toast.LENGTH_SHORT).show();
+            }
+        });
+        alertDialogBuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(),"Cancelled",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+    public void showShareDialog() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Share mo lang?");
+        alertDialogBuilder.setMessage("Are you sure you want to share?");
+        alertDialogBuilder.setCancelable(true);
+
+        alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                Toast.makeText(MainActivity.this,"Shared", Toast.LENGTH_SHORT).show();
+            }
+        });
+        alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(MainActivity.this,"Not shared", Toast.LENGTH_SHORT).show();
             }
         });
         alertDialogBuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
