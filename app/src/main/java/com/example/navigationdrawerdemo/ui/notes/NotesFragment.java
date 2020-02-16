@@ -1,9 +1,12 @@
 package com.example.navigationdrawerdemo.ui.notes;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -23,13 +26,19 @@ public class NotesFragment extends Fragment {
         notesViewModel =
                 ViewModelProviders.of(this).get(NotesViewModel.class);
         View root = inflater.inflate(R.layout.fragment_notes, container, false);
+
         final TextView textView = root.findViewById(R.id.text_note);
+
         notesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
         });
-        return root;
+
+        final Context contextThemeWrapper = new ContextThemeWrapper(getActivity(), R.style.NoteFragmentStyle);
+        LayoutInflater localInfleter = inflater.cloneInContext(contextThemeWrapper);
+
+        return localInfleter.inflate(R.layout.fragment_notes, container, false);
     }
 }
