@@ -37,4 +37,7 @@
     <string name="course">Course:</string>
     <string name="user_display_profile">User Display Profile</string>
     <string name="about_us">About Us</string>
+    <string name="notes">Notes</string>
+    <string name="reminders">Reminders</string>
+    <string name="archive">Archive</string>
 </resources>

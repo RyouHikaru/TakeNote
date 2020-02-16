@@ -1,19 +1,19 @@
-package com.example.navigationdrawerdemo.ui.home;
+package com.example.navigationdrawerdemo.ui.notes;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class NotesViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public NotesViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Welcome Take Noter!");
+        mText.setValue("Add notes");
     }
 
-    public LiveData<String> getText() {
+    LiveData<String> getText() {
         return mText;
     }
 }
