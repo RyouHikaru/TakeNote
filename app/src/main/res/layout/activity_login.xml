@@ -21,7 +21,7 @@
     <Button
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/selector_button"
         android:text="@string/login_label"
@@ -33,7 +33,7 @@
     <Button
         android:id="@+id/cancelButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/selector_button"
         android:text="@string/cancel_button_label"

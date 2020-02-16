@@ -59,15 +59,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
-            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
-
-            }
-
+            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {}
             @Override
-            public void onDrawerOpened(@NonNull View drawerView) {
-
-            }
-
+            public void onDrawerOpened(@NonNull View drawerView) {}
+            @Override
+            public void onDrawerStateChanged(int newState) {}
             @Override
             public void onDrawerClosed(@NonNull View drawerView) {
                 switch (clickedNavItem) {
@@ -81,12 +77,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 replace(R.id.fragment_container, new UserProfileFragment()).commit();
                         getSupportActionBar().setTitle(R.string.menu_user_profile);
                         break;
+                    case R.id.nav_logout:
+                        Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(i);
+                        finish();
+                        break;
                 }
-            }
-
-            @Override
-            public void onDrawerStateChanged(int newState) {
-
             }
         });
     }

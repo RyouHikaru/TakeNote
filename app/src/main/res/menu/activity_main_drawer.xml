@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single"
+        android:id="@+id/menu_top">
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_camera"
@@ -23,20 +24,17 @@
             android:title="@string/menu_tools" />
     </group>
 
-    <item android:title="@string/about_us">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="@string/menu_share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_send" />
-            <item
-                android:id="@+id/nav_logout"
-                android:title="@string/logout_label" />
-        </menu>
-    </item>
+
+    <item
+        android:id="@+id/nav_share"
+        android:icon="@drawable/ic_menu_share"
+        android:title="@string/menu_share" />
+    <item
+        android:id="@+id/nav_send"
+        android:icon="@drawable/ic_menu_send"
+        android:title="@string/menu_send" />
+    <item
+        android:id="@+id/nav_logout"
+        android:title="@string/logout_label" />
 
 </menu>
