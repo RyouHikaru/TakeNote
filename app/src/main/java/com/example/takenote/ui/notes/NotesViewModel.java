@@ -1,19 +1,19 @@
-package com.example.navigationdrawerdemo.ui.user_profile;
+package com.example.takenote.ui.notes;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class UserProfileViewModel extends ViewModel {
+public class NotesViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public UserProfileViewModel() {
+    public NotesViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("User Profile Fragment");
+        mText.setValue("Add notes");
     }
 
-    public LiveData<String> getText() {
+    LiveData<String> getText() {
         return mText;
     }
 }

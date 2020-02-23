@@ -1,4 +1,4 @@
-package com.example.navigationdrawerdemo;
+package com.example.takenote;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,25 +7,25 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class TakeNoteDatabase extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "TakeNote.db";
-    public static final String TABLE_1 = "users";
-    public static final String TABLE_2 = "notes";
-    public static final String TABLE_3 = "reminders";
+    private static final String DATABASE_NAME = "TakeNote.db";
+    private static final String TABLE_1 = "users";
+    private static final String TABLE_2 = "notes";
+    private static final String TABLE_3 = "reminders";
 
-    public static final String TB1_COL_1 = "username";
-    public static final String TB1_COL_2 = "password";
-    public static final String TB1_COL_3 = "first_name";
-    public static final String TB1_COL_4 = "last_name";
-    public static final String TB1_COL_5 = "address";
-    public static final String TB1_COL_6 = "email";
+    private static final String TB1_COL_1 = "username";
+    private static final String TB1_COL_2 = "password";
+    private static final String TB1_COL_3 = "first_name";
+    private static final String TB1_COL_4 = "last_name";
+    private static final String TB1_COL_5 = "address";
+    private static final String TB1_COL_6 = "email";
 
-    public static final String TB2_COL_1 = "note_no";
-    public static final String TB2_COL_2 = "note_title";
-    public static final String TB2_COL_3 = "note_content";
+    private static final String TB2_COL_1 = "note_no";
+    private static final String TB2_COL_2 = "note_title";
+    private static final String TB2_COL_3 = "note_content";
 
-    public static final String TB3_COL_1 = "reminder_no";
-    public static final String TB3_COL_2 = "reminder_title";
-    public static final String TB3_COL_3 = "reminder_content";
+    private static final String TB3_COL_1 = "reminder_no";
+    private static final String TB3_COL_2 = "reminder_title";
+    private static final String TB3_COL_3 = "reminder_content";
     private SQLiteDatabase db;
 
     public TakeNoteDatabase(Context context) {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.navigationdrawerdemo">
+    package="com.example.takenote">
 
     <application
         android:allowBackup="true"
@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".WelcomeActivity"
+            android:name="com.example.takenote.WelcomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,11 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"
+        <activity android:name="com.example.takenote.LoginActivity"
             android:theme="@style/AppTheme.LoginSignupTheme"/>
-        <activity android:name=".SignUpActivity"
+        <activity android:name="com.example.takenote.SignUpActivity"
             android:theme="@style/AppTheme.LoginSignupTheme"/>
-        <activity android:name=".MainActivity"
+        <activity android:name="com.example.takenote.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:hardwareAccelerated="true"/>
     </application>

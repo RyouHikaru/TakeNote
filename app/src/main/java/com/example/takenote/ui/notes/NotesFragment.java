@@ -1,4 +1,4 @@
-package com.example.navigationdrawerdemo.ui.notes;
+package com.example.takenote.ui.notes;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -15,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.navigationdrawerdemo.R;
+import com.example.takenote.R;
 
 public class NotesFragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package com.example.navigationdrawerdemo.ui.archive;
+package com.example.takenote.ui.archive;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.navigationdrawerdemo.R;
+import com.example.takenote.R;
 
 public class ArchiveFragment extends Fragment {
 

@@ -1,16 +1,16 @@
-package com.example.navigationdrawerdemo.ui.archive;
+package com.example.takenote.ui.reminder;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ArchiveViewModel extends ViewModel {
+public class RemindersViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ArchiveViewModel() {
+    public RemindersViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Archived items go here");
+        mText.setValue("Add Reminders");
     }
 
     LiveData<String> getText() {

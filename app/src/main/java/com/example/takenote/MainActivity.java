@@ -1,7 +1,6 @@
-package com.example.navigationdrawerdemo;
+package com.example.takenote;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -14,10 +13,11 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 
-import com.example.navigationdrawerdemo.ui.archive.ArchiveFragment;
-import com.example.navigationdrawerdemo.ui.notes.NotesFragment;
-import com.example.navigationdrawerdemo.ui.reminder.RemindersFragment;
-import com.example.navigationdrawerdemo.ui.user_profile.UserProfileFragment;
+import com.example.takenote.R;
+import com.example.takenote.ui.archive.ArchiveFragment;
+import com.example.takenote.ui.notes.NotesFragment;
+import com.example.takenote.ui.reminder.RemindersFragment;
+import com.example.takenote.ui.user_profile.UserProfileFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.drawerlayout.widget.DrawerLayout;

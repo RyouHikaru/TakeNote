@@ -1,4 +1,4 @@
-package com.example.navigationdrawerdemo;
+package com.example.takenote;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.takenote.R;
 
 public class SignUpActivity extends AppCompatActivity {
     private static int TIME_DELAY = 2000;

@@ -1,4 +1,4 @@
-package com.example.navigationdrawerdemo;
+package com.example.takenote;
 
 import android.content.Context;
 
