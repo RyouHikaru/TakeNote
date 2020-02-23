@@ -99,7 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
         android:text="@string/click_here_to_sign_up"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/default_whitish_color"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

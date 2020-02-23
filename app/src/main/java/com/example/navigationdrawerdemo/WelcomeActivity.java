@@ -8,10 +8,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 2000;
+    private TakeNoteDatabase myDb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
+        myDb = new TakeNoteDatabase(this);
 
         new Handler().postDelayed(new Runnable() {
             @Override

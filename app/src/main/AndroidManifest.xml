@@ -19,9 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.LoginSignupTheme"/>
         <activity android:name=".SignUpActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.LoginSignupTheme"/>
         <activity android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:hardwareAccelerated="true"/>

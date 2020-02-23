@@ -37,8 +37,8 @@ public class NotesFragment extends Fragment {
         });
 
         final Context contextThemeWrapper = new ContextThemeWrapper(getActivity(), R.style.NoteFragmentStyle);
-        LayoutInflater localInfleter = inflater.cloneInContext(contextThemeWrapper);
+        LayoutInflater localInflater = inflater.cloneInContext(contextThemeWrapper);
 
-        return localInfleter.inflate(R.layout.fragment_notes, container, false);
+        return localInflater.inflate(R.layout.fragment_notes, container, false);
     }
 }

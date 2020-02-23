@@ -30,14 +30,21 @@
     <string name="settings_label">Settings</string>
     <string name="click_here_to_sign_up">Click here to sign up</string>
     <string name="basic_information">Basic Information</string>
-    <string name="name">Name:</string>
-    <string name="address">Address:</string>
-    <string name="birthdate">Birthdate:</string>
-    <string name="email">Email:</string>
-    <string name="course">Course:</string>
+    <string name="name">Name</string>
+    <string name="address">Address</string>
+    <string name="birthdate">Birthdate</string>
+    <string name="email">Email</string>
+    <string name="course">Course</string>
     <string name="user_display_profile">User Display Profile</string>
     <string name="about_us">About Us</string>
     <string name="notes">Notes</string>
     <string name="reminders">Reminders</string>
     <string name="archive">Archive</string>
+    <string name="enter_email_address">Enter email address</string>
+    <string name="enter_address">Enter address</string>
+    <string name="last_name">Last Name</string>
+    <string name="enter_last_name">Enter last name</string>
+    <string name="first_name">First Name</string>
+    <string name="enter_first_name">Enter first name</string>
+
 </resources>
