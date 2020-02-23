@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 if (myDb.isExistingUser(un) == false) {
                     Toast.makeText(LoginActivity.this, "User does not exist", Toast.LENGTH_SHORT).show();
-                    resetField();
+                    unEditText.setText("");
                     unEditText.requestFocus();
                     return;
                 }
