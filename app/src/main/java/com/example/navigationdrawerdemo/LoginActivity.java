@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 if (myDb.isExistingUser(un) == false) {
                     Toast.makeText(LoginActivity.this, "User does not exist", Toast.LENGTH_SHORT).show();
-                    unEditText.setText("");
+                    pwEditText.setText("");
                     unEditText.requestFocus();
                     return;
                 }
@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     else {
                         Toast.makeText(LoginActivity.this, "Invalid password", Toast.LENGTH_SHORT).show();
-                        unEditText.setText("");
+                        pwEditText.setText("");
                         pwEditText.requestFocus();
                         return;
                     }
