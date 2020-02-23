@@ -28,7 +28,7 @@
         app:layout_constraintEnd_toStartOf="@+id/cancelButton"
         app:layout_constraintHorizontal_bias="0.735"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/pwEditText" />
 
     <Button
         android:id="@+id/cancelButton"
@@ -41,7 +41,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.693"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/pwEditText" />
 
     <TextView
         android:id="@+id/unTextView"
@@ -83,7 +83,7 @@
         app:srcCompat="@drawable/login_text" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/pwEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"

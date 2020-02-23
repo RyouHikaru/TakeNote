@@ -52,7 +52,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.336"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/firstNameEditText2" />
+            app:layout_constraintTop_toBottomOf="@+id/lastnameEditText" />
 
         <EditText
             android:id="@+id/addressEditText"
@@ -81,7 +81,7 @@
             app:layout_constraintTop_toBottomOf="@+id/firstNameEditText" />
 
         <EditText
-            android:id="@+id/firstNameEditText2"
+            android:id="@+id/lastnameEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -173,11 +173,11 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/pw_hint"
-            android:inputType="text"
+            android:importantForAutofill="no"
+            android:inputType="text|textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pwTextView"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toBottomOf="@+id/pwTextView" />
 
         <TextView
             android:id="@+id/unTextView"

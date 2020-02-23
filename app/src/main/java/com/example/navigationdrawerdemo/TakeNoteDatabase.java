@@ -85,11 +85,37 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
             return true;
         }
     }
-    public Cursor getUserPassowrd(String username) {
+    public boolean isExistingUser(String username) {
         db = this.getWritableDatabase();
         String sqlSelect = "SELECT password FROM " + TABLE_1 + " WHERE username = ?";
+        Cursor usernameCursor = db.rawQuery(sqlSelect, new String[] {username});
+
+        if (usernameCursor.getCount() == 0) {
+            System.out.println("New user");
+            return false;
+        }
+        else {
+            System.out.println("Existing user");
+            return true;
+        }
+    }
+    public String getUserPassword(String username) {
+        db = this.getWritableDatabase();
+        String pw = null;
+        String sqlSelect = "SELECT password FROM " + TABLE_1 + " WHERE username = ?";
         Cursor userCursor = db.rawQuery(sqlSelect, new String[] {username});
-        return userCursor;
+
+        if (userCursor.getCount() == 0) {
+            System.out.println("User not found");
+            return pw;
+        }
+        else {
+            while (userCursor.moveToNext()) {
+                pw = userCursor.getString(0);
+                System.out.println(pw);
+            }
+        }
+        return pw;
     }
     public Cursor getUserDetails(String username) {
         db = this.getWritableDatabase();

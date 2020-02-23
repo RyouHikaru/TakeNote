@@ -30,9 +30,9 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     int clickedNavItem;
-    DrawerLayout drawer;
-    NavigationView navigationView;
-    Toolbar toolbar;
+    private DrawerLayout drawer;
+    private NavigationView navigationView;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,8 +157,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent i = new Intent(MainActivity.this, LoginActivity.class);
-                        startActivity(i);
                         finish();
                     }
                 }, 1000);
@@ -173,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         alertDialogBuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getApplicationContext(),"Cancelled",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"Cancelled",Toast.LENGTH_SHORT).show();
             }
         });
 
