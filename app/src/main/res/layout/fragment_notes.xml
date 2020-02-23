@@ -19,49 +19,11 @@
             android:layout_height="wrap_content"
             android:divider="@drawable/linear_layout_divider"
             android:orientation="vertical"
-            android:showDividers="middle">
-
-            <TextView
-                android:id="@+id/item1textView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="20dp"
-                android:background="@drawable/notes_selector"
-                android:paddingStart="25dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:text="Garena account"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/item2TextView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="20dp"
-                android:background="@drawable/notes_selector"
-                android:paddingStart="25dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:text="Lecture in P6"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/item3TextView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="20dp"
-                android:background="@drawable/notes_selector"
-                android:paddingStart="25dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:text="How to build prototype"
-                android:textSize="20sp" />
-
-        </LinearLayout>
+            android:showDividers="middle"/>
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
+        android:id="@+id/notes_floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"

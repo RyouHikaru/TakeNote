@@ -3,7 +3,6 @@ package com.example.takenote.ui.notes;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -18,26 +17,28 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.takenote.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class NotesFragment extends Fragment {
     private View root;
-    private TextView item1TextView, item2TextView, item3TextView;
     private NotesViewModel notesViewModel;
     private View.OnClickListener notesListener;
     private LinearLayout linearLayout;
     private LinearLayout.LayoutParams layout;
+    private LayoutInflater localInflater;
+    private FloatingActionButton addButton;
+    private Context contextThemeWrapper;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        notesViewModel =
-                ViewModelProviders.of(this).get(NotesViewModel.class);
-//        root = inflater.inflate(R.layout.fragment_notes, container, false);
-        final Context contextThemeWrapper = new ContextThemeWrapper(getActivity(), R.style.NoteFragmentStyle);
-        LayoutInflater localInflater = inflater.cloneInContext(contextThemeWrapper);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // region Mapping of Objects
+        notesViewModel = ViewModelProviders.of(this).get(NotesViewModel.class);
+        contextThemeWrapper = new ContextThemeWrapper(getActivity(), R.style.NoteFragmentStyle);
+        localInflater = inflater.cloneInContext(contextThemeWrapper);
         root = localInflater.inflate(R.layout.fragment_notes, container, false);
-        item1TextView = root.findViewById(R.id.item1textView);
-        item2TextView = root.findViewById(R.id.item2TextView);
-        item3TextView = root.findViewById(R.id.item3TextView);
+        addButton = root.findViewById(R.id.notes_floatingActionButton);
+        linearLayout = root.findViewById(R.id.notes_linear_layout);
+        layout = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 140);
+        // endregion
 
         notesListener = new View.OnClickListener() {
             @Override
@@ -46,16 +47,15 @@ public class NotesFragment extends Fragment {
             }
         };
 
-        item1TextView.setOnClickListener(notesListener);
-        item2TextView.setOnClickListener(notesListener);
-        item3TextView.setOnClickListener(notesListener);
-
-        // region Programmatically added TextViews
-        linearLayout = root.findViewById(R.id.notes_linear_layout);
-        layout = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 140);
         layout.setMargins(40, 40, 40, 40);
 
-        addTextView();
+        // region Programmatically added TextViews
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addSingleTextView();
+            }
+        });
         // endregion
         return root;
     }
@@ -82,7 +82,19 @@ public class NotesFragment extends Fragment {
         AlertDialog itemDialog = builder.create();
         itemDialog.show();
     }
-    public void addTextView() {
+    public void addSingleTextView() {
+        TextView anotherTextView;
+        anotherTextView = new TextView(getActivity());
+        anotherTextView.setPaddingRelative(50, 40, 50, 40);
+        anotherTextView.setBackgroundResource(R.drawable.notes_selector);
+        anotherTextView.setText("Another one");
+        anotherTextView.setTextSize(20);
+        anotherTextView.setVisibility(View.VISIBLE);
+        anotherTextView.setLayoutParams(layout);
+        anotherTextView.setOnClickListener(notesListener);
+        linearLayout.addView(anotherTextView);
+    }
+    public void addMultipleTextView() {
         TextView[] items = new TextView[5];
         for (int i = 0; i < 5; i++) {
             items[i] = new TextView(getActivity());
