@@ -5,19 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/text_note"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ScrollView
         android:id="@+id/noteScrollView"
         android:layout_width="match_parent"
@@ -27,171 +14,49 @@
         tools:layout_editor_absoluteY="40dp">
 
         <LinearLayout
+            android:id="@+id/notes_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="@drawable/linear_layout_divider"
-            android:showDividers="middle"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:showDividers="middle">
 
             <TextView
-                android:id="@+id/textView18"
+                android:id="@+id/item1textView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="40dp"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:background="@drawable/notes_selector"
+                android:paddingStart="25dp"
                 android:paddingTop="20dp"
-                android:paddingRight="40dp"
                 android:paddingBottom="20dp"
-                android:text="TextView" />
+                android:text="Garena account"
+                android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/textView19"
+                android:id="@+id/item2TextView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="40dp"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:background="@drawable/notes_selector"
+                android:paddingStart="25dp"
                 android:paddingTop="20dp"
-                android:paddingRight="40dp"
                 android:paddingBottom="20dp"
-                android:text="TextView" />
+                android:text="Lecture in P6"
+                android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/textView20"
+                android:id="@+id/item3TextView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="40dp"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:background="@drawable/notes_selector"
+                android:paddingStart="25dp"
                 android:paddingTop="20dp"
-                android:paddingRight="40dp"
                 android:paddingBottom="20dp"
-                android:text="TextView" />
+                android:text="How to build prototype"
+                android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/textView21"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="40dp"
-                android:paddingTop="20dp"
-                android:paddingRight="40dp"
-                android:paddingBottom="20dp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView22"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="40dp"
-                android:paddingTop="20dp"
-                android:paddingRight="40dp"
-                android:paddingBottom="20dp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView23"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="40dp"
-                android:paddingTop="20dp"
-                android:paddingRight="40dp"
-                android:paddingBottom="20dp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView24"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="40dp"
-                android:paddingTop="20dp"
-                android:paddingRight="40dp"
-                android:paddingBottom="20dp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView25"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="40dp"
-                android:paddingTop="20dp"
-                android:paddingRight="40dp"
-                android:paddingBottom="20dp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView26"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="40dp"
-                android:paddingTop="20dp"
-                android:paddingRight="40dp"
-                android:paddingBottom="20dp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView27"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="40dp"
-                android:paddingTop="20dp"
-                android:paddingRight="40dp"
-                android:paddingBottom="20dp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView28"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="40dp"
-                android:paddingTop="20dp"
-                android:paddingRight="40dp"
-                android:paddingBottom="20dp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView29"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="40dp"
-                android:paddingTop="20dp"
-                android:paddingRight="40dp"
-                android:paddingBottom="20dp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView30"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="40dp"
-                android:paddingTop="20dp"
-                android:paddingRight="40dp"
-                android:paddingBottom="20dp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView31"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="40dp"
-                android:paddingTop="20dp"
-                android:paddingRight="40dp"
-                android:paddingBottom="20dp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView32"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="40dp"
-                android:paddingTop="20dp"
-                android:paddingRight="40dp"
-                android:paddingBottom="20dp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView33"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="40dp"
-                android:paddingTop="20dp"
-                android:paddingRight="40dp"
-                android:paddingBottom="20dp"
-                android:text="TextView" />
         </LinearLayout>
     </ScrollView>
 
@@ -204,6 +69,7 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_add_black_60dp" />
+        app:srcCompat="@drawable/ic_add_black_60dp"
+        android:focusable="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
