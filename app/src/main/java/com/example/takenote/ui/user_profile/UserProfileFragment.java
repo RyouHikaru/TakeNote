@@ -1,17 +1,15 @@
-package com.example.navigationdrawerdemo.ui.user_profile;
+package com.example.takenote.ui.user_profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.navigationdrawerdemo.R;
+import com.example.takenote.R;
 
 public class UserProfileFragment extends Fragment {
 

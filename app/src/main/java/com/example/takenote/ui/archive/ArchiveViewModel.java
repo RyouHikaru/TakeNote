@@ -1,16 +1,16 @@
-package com.example.navigationdrawerdemo.ui.notes;
+package com.example.takenote.ui.archive;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NotesViewModel extends ViewModel {
+public class ArchiveViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public NotesViewModel() {
+    public ArchiveViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Add notes");
+        mText.setValue("Archived items go here");
     }
 
     LiveData<String> getText() {
