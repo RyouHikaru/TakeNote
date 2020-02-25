@@ -6,14 +6,15 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
+import android.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 
-import com.example.takenote.R;
 import com.example.takenote.ui.archive.ArchiveFragment;
 import com.example.takenote.ui.notes.NotesFragment;
 import com.example.takenote.ui.reminder.RemindersFragment;
@@ -29,16 +30,17 @@ import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    int clickedNavItem;
+    private int clickedNavItem;
     private DrawerLayout drawer;
     private NavigationView navigationView;
     private Toolbar toolbar;
+    private DialogInterface.OnShowListener dialogListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
@@ -101,6 +103,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             }
         });
+
+        dialogListener = new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                Window view = ((android.app.AlertDialog)dialog).getWindow();
+                view.setBackgroundDrawableResource(R.color.colorPrimary);
+
+                Button positiveButton = ((android.app.AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
+                positiveButton.setTextColor(getResources().getColor(R.color.default_whitish_color));
+                positiveButton.invalidate();
+
+                Button neutralButton = ((android.app.AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEUTRAL);
+                neutralButton.setTextColor(getResources().getColor(R.color.default_whitish_color));
+                neutralButton.invalidate();
+
+                Button negativeButton = ((android.app.AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
+                negativeButton.setTextColor(getResources().getColor(R.color.default_whitish_color));
+                negativeButton.invalidate();
+            }
+        };
     }
 
     @Override
@@ -145,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void showLogoutDialog() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this, R.style.DialogStyle);
         alertDialogBuilder.setTitle("Confirm Logout?");
         alertDialogBuilder.setMessage("Are you sure you want to logout?");
         alertDialogBuilder.setCancelable(true);
@@ -176,10 +198,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
         AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.setOnShowListener(dialogListener);
         alertDialog.show();
     }
     public void showShareDialog() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this, R.style.DialogStyle);
         alertDialogBuilder.setTitle("Share mo lang?");
         alertDialogBuilder.setMessage("Are you sure you want to share?");
         alertDialogBuilder.setCancelable(true);
@@ -204,6 +227,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
         AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.setOnShowListener(dialogListener);
         alertDialog.show();
     }
 }

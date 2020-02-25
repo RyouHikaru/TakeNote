@@ -16,16 +16,18 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
     private static final String TB1_COL_2 = "password";
     private static final String TB1_COL_3 = "first_name";
     private static final String TB1_COL_4 = "last_name";
-    private static final String TB1_COL_5 = "address";
+    private static final String TB1_COL_5 = "location";
     private static final String TB1_COL_6 = "email";
 
     private static final String TB2_COL_1 = "note_no";
-    private static final String TB2_COL_2 = "note_title";
-    private static final String TB2_COL_3 = "note_content";
+    private static final String TB2_COL_2 = "username";
+    private static final String TB2_COL_3 = "note_title";
+    private static final String TB2_COL_4 = "note_content";
 
     private static final String TB3_COL_1 = "reminder_no";
-    private static final String TB3_COL_2 = "reminder_title";
-    private static final String TB3_COL_3 = "reminder_content";
+    private static final String TB3_COL_2 = "username";
+    private static final String TB3_COL_3 = "reminder_title";
+    private static final String TB3_COL_4 = "reminder_content";
     private SQLiteDatabase db;
 
     public TakeNoteDatabase(Context context) {
@@ -38,10 +40,12 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
         String createUsersTable = "CREATE TABLE " + TABLE_1 + " (" + TB1_COL_1 + " TEXT PRIMARY KEY, " +
                 TB1_COL_2 + " TEXT, " + TB1_COL_3 + " TEXT, " + TB1_COL_4 + " TEXT, " +
                 TB1_COL_5 + " TEXT, " + TB1_COL_6 + " TEXT)";
-        String createNotesTable = "CREATE TABLE " + TABLE_2 + " (" + TB2_COL_1 + " NUMBER PRIMARY KEY, " +
-                TB2_COL_2 + " TEXT, " + TB2_COL_3 + " TEXT)";
-        String createRemindersTable = "CREATE TABLE " + TABLE_3 + " (" + TB3_COL_1 + " NUMBER PRIMARY KEY, " +
-                TB3_COL_2 + " TEXT, " + TB3_COL_3 + " TEXT)";
+        String createNotesTable = "CREATE TABLE " + TABLE_2 + " (" + TB2_COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                TB2_COL_2 + " TEXT NOT NULL, " + TB2_COL_3 + " TEXT, " +
+                TB2_COL_4 + " TEXT)";
+        String createRemindersTable = "CREATE TABLE " + TABLE_3 + " (" + TB3_COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                TB3_COL_2 + " TEXT NOT NULL, " + TB3_COL_3 + " TEXT, " +
+                TB3_COL_4 + " TEXT)";
 
         db.execSQL(createUsersTable);
         System.out.println("Users Table Created");
@@ -123,5 +127,23 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
                 " FROM " + TABLE_1 + " WHERE username = ?";
         Cursor userCursor = db.rawQuery(sqlSelect, new String[] {username});
         return userCursor;
+    }
+    public boolean insertNote(String username, String title, String content) {
+        db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TB2_COL_2, username);
+        contentValues.put(TB2_COL_3, title);
+        contentValues.put(TB2_COL_4, content);
+
+        long insertResult = db.insert(TABLE_2, null, contentValues);
+        System.out.println(insertResult);
+        if (insertResult == -1) {
+            System.out.println("Note not inserted");
+            return false;
+        }
+        else {
+            System.out.println("Note inserted");
+            return true;
+        }
     }
 }

@@ -31,9 +31,9 @@ public class LoginActivity extends AppCompatActivity {
             System.exit(0);
         }
 
-        loginButton = (Button) findViewById(R.id.loginButton);
-        cancelButton = (Button) findViewById(R.id.cancelButton);
-        signUpView = (TextView) findViewById(R.id.signUpView);
+        loginButton = findViewById(R.id.loginButton);
+        cancelButton = findViewById(R.id.cancelButton);
+        signUpView = findViewById(R.id.signUpView);
         unEditText = findViewById(R.id.unEditText);
         pwEditText = findViewById(R.id.pwEditText);
         myDb = new TakeNoteDatabase(this);
