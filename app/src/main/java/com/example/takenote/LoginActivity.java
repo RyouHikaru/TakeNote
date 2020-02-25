@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String un = unEditText.getText().toString();
+                final String un = unEditText.getText().toString();
                 String pw = pwEditText.getText().toString();
 
                 if (un.isEmpty()) {
@@ -65,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 intent = new Intent(LoginActivity.this, MainActivity.class);
+                                intent.putExtra("UN", un);
                                 startActivity(intent);
                             }
                         }, TIME_DELAY);

@@ -21,7 +21,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class NotesFragment extends Fragment {
     private View root;
-    private NotesViewModel notesViewModel;
     private View.OnClickListener notesListener;
     private LinearLayout linearLayout;
     private LinearLayout.LayoutParams layout;
@@ -31,7 +30,6 @@ public class NotesFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // region Mapping of Objects
-        notesViewModel = ViewModelProviders.of(this).get(NotesViewModel.class);
         contextThemeWrapper = new ContextThemeWrapper(getActivity(), R.style.NoteFragmentStyle);
         localInflater = inflater.cloneInContext(contextThemeWrapper);
         root = localInflater.inflate(R.layout.fragment_notes, container, false);
