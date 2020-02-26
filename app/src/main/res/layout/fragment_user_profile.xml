@@ -14,34 +14,34 @@
         app:srcCompat="@drawable/ic_account_circle_default_24dp" />
 
     <TextView
-        android:id="@+id/basicInfoTextView"
+        android:id="@+id/profileTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="30sp"
-        android:paddingTop="20sp"
+        android:paddingTop="30sp"
         android:text="@string/basic_information"
+        android:textColor="#000000"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/firstnameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="45sp"
+        android:paddingTop="30sp"
+        android:text="@string/first_name"
         android:textColor="#000000"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/nameTextView"
+        android:id="@+id/lastnameTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="45sp"
         android:paddingTop="10sp"
-        android:text="@string/name"
+        android:text="@string/last_name"
         android:textColor="#000000"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/birthdateTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="45sp"
-        android:paddingTop="10sp"
-        android:text="@string/birthdate"
-        android:textColor="#000000"
-        android:textSize="16sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/addressTextView"
@@ -51,7 +51,7 @@
         android:paddingTop="10sp"
         android:text="@string/address"
         android:textColor="#000000"
-        android:textSize="16sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/emailTextView"
@@ -61,16 +61,6 @@
         android:paddingTop="10sp"
         android:text="@string/email"
         android:textColor="#000000"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/courseTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="45sp"
-        android:paddingTop="10sp"
-        android:text="@string/course"
-        android:textColor="#000000"
-        android:textSize="16sp" />
+        android:textSize="20sp" />
 
 </LinearLayout>

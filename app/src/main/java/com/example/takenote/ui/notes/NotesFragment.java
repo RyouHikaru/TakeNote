@@ -1,43 +1,142 @@
 package com.example.takenote.ui.notes;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
+import com.example.takenote.InputNoteDialog;
 import com.example.takenote.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class NotesFragment extends Fragment {
+    private View root;
+    private View.OnClickListener notesListener;
+    private LinearLayout linearLayout;
+    private LinearLayout.LayoutParams layout;
+    private LayoutInflater localInflater;
+    private FloatingActionButton addButton;
+    private Context contextThemeWrapper;
+    private String noteTitle, noteContent;
 
-    private NotesViewModel notesViewModel;
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // region Mapping of Objects
+        contextThemeWrapper = new ContextThemeWrapper(getActivity(), R.style.NoteFragmentStyle);
+        localInflater = inflater.cloneInContext(contextThemeWrapper);
+        root = localInflater.inflate(R.layout.fragment_notes, container, false);
+        addButton = root.findViewById(R.id.notes_floatingActionButton);
+        linearLayout = root.findViewById(R.id.notes_linear_layout);
+        layout = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 140);
+        // endregion
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        notesViewModel =
-                ViewModelProviders.of(this).get(NotesViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_notes, container, false);
-
-        final TextView textView = root.findViewById(R.id.text_note);
-
-        notesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        notesListener = new View.OnClickListener() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onClick(View v) {
+                showItemDialog();
+            }
+        };
+
+        layout.setMargins(40, 40, 40, 40);
+
+        // region Programmatically added TextViews
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openInputDialog();
+            }
+        });
+        // endregion
+        return root;
+    }
+    public void openInputDialog() {
+        InputNoteDialog dialog = new InputNoteDialog();
+        dialog.setTargetFragment(this, 0);
+        dialog.show(getActivity().getSupportFragmentManager(), "Note input");
+    }
+    public void showItemDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.DialogStyle);
+
+        builder.setTitle(noteTitle);
+        builder.setMessage(noteContent);
+
+        builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                return;
             }
         });
 
-        final Context contextThemeWrapper = new ContextThemeWrapper(getActivity(), R.style.NoteFragmentStyle);
-        LayoutInflater localInflater = inflater.cloneInContext(contextThemeWrapper);
+        builder.setPositiveButton("Edit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getActivity(), "This will go to EditActivity", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        });
 
-        return localInflater.inflate(R.layout.fragment_notes, container, false);
+        AlertDialog itemDialog = builder.create();
+
+        itemDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(final DialogInterface dialog) {
+                // Add or create your own background drawable for AlertDialog window
+                Window view = ((AlertDialog)dialog).getWindow();
+                view.setBackgroundDrawableResource(R.color.colorPrimary);
+
+                // Customize POSITIVE and NEUTRAL buttons.
+                Button positiveButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
+                positiveButton.setTextColor(getActivity().getApplicationContext().getResources().getColor(R.color.default_whitish_color));
+                positiveButton.invalidate();
+
+                Button neutralButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEUTRAL);
+                neutralButton.setTextColor(getActivity().getApplicationContext().getResources().getColor(R.color.default_whitish_color));
+                neutralButton.invalidate();
+            }
+        });
+
+        itemDialog.show();
+    }
+    public void addSingleTextView() {
+        TextView anotherTextView;
+        anotherTextView = new TextView(getActivity());
+        anotherTextView.setPaddingRelative(50, 40, 50, 40);
+        anotherTextView.setBackgroundResource(R.drawable.notes_selector);
+        anotherTextView.setText(noteTitle);
+        anotherTextView.setTextSize(20);
+        anotherTextView.setVisibility(View.VISIBLE);
+        anotherTextView.setLayoutParams(layout);
+        anotherTextView.setOnClickListener(notesListener);
+        linearLayout.addView(anotherTextView);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode) {
+            case 0:
+                if (resultCode == Activity.RESULT_OK) {
+                    Bundle bundle = data.getExtras();
+                    noteTitle = bundle.getString("TITLE");
+                    noteContent = bundle.getString("CONTENT");
+
+                    addSingleTextView();
+                }
+                break;
+        }
+
     }
 }
