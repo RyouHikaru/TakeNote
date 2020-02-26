@@ -17,6 +17,7 @@
     <style name="AppTheme.LoginSignupTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/default_whitish_color</item>
         <item name="colorAccent">@color/default_whitish_color</item>
     </style>
 
@@ -29,6 +30,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/default_whitish_color</item>
+        <item name="android:itemBackground">@color/colorPrimary</item>
+        <item name="android:itemTextAppearance">@color/default_whitish_color</item>
     </style>
 
     <style name="DialogStyle" parent="ThemeOverlay.AppCompat.Dialog.Alert">
