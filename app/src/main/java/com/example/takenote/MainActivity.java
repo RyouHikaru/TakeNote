@@ -62,6 +62,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.menu_home);
         }
 
+        dialogListener = new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                Window view = ((android.app.AlertDialog)dialog).getWindow();
+                view.setBackgroundDrawableResource(R.color.colorPrimary);
+
+                Button positiveButton = ((android.app.AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
+                positiveButton.setTextColor(getResources().getColor(R.color.default_whitish_color));
+                positiveButton.invalidate();
+
+                Button neutralButton = ((android.app.AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEUTRAL);
+                neutralButton.setTextColor(getResources().getColor(R.color.default_whitish_color));
+                neutralButton.invalidate();
+
+                Button negativeButton = ((android.app.AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
+                negativeButton.setTextColor(getResources().getColor(R.color.default_whitish_color));
+                negativeButton.invalidate();
+            }
+        };
+
         drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {}
@@ -101,28 +121,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         showLogoutDialog();
                         break;
                 }
+                clickedNavItem = 0;
             }
         });
-
-        dialogListener = new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialog) {
-                Window view = ((android.app.AlertDialog)dialog).getWindow();
-                view.setBackgroundDrawableResource(R.color.colorPrimary);
-
-                Button positiveButton = ((android.app.AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
-                positiveButton.setTextColor(getResources().getColor(R.color.default_whitish_color));
-                positiveButton.invalidate();
-
-                Button neutralButton = ((android.app.AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEUTRAL);
-                neutralButton.setTextColor(getResources().getColor(R.color.default_whitish_color));
-                neutralButton.invalidate();
-
-                Button negativeButton = ((android.app.AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
-                negativeButton.setTextColor(getResources().getColor(R.color.default_whitish_color));
-                negativeButton.invalidate();
-            }
-        };
     }
 
     @Override
