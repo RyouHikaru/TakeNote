@@ -4,14 +4,14 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
+import android.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.takenote.R;
 
 public class SignUpActivity extends AppCompatActivity {
     private static int TIME_DELAY = 2000;
@@ -76,7 +76,7 @@ public class SignUpActivity extends AppCompatActivity {
                     return;
                 }
 
-                signupAlert(un, pw, ln, fn, a, em);
+                signupAlert(un, pw, fn, ln, a, em);
             }
         });
 
@@ -202,7 +202,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
     public void signupAlert(final String un, final String pw, final String fn, final String ln, final String a, final String em) {
-        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this, R.style.DialogStyle);
         alertDialogBuilder.setTitle("Signing up");
         alertDialogBuilder.setMessage("Confirm to signup?");
 
@@ -240,6 +240,28 @@ public class SignUpActivity extends AppCompatActivity {
         });
         alertDialogBuilder.setCancelable(false);
         AlertDialog alertDialog = alertDialogBuilder.create();
+
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(final DialogInterface dialog) {
+                // Add or create your own background drawable for AlertDialog window
+                Window view = ((android.app.AlertDialog)dialog).getWindow();
+                view.setBackgroundDrawableResource(R.color.colorPrimary);
+
+                // Customize POSITIVE and NEUTRAL buttons.
+                Button positiveButton = ((android.app.AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
+                positiveButton.setTextColor(getResources().getColor(R.color.default_whitish_color));
+                positiveButton.invalidate();
+
+                Button neutralButton = ((android.app.AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEUTRAL);
+                neutralButton.setTextColor(getResources().getColor(R.color.default_whitish_color));
+                neutralButton.invalidate();
+
+                Button negativeButton = ((android.app.AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
+                negativeButton.setTextColor(getResources().getColor(R.color.default_whitish_color));
+                negativeButton.invalidate();
+            }
+        });
         alertDialog.show();
     }
 }
