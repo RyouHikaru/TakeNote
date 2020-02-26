@@ -148,7 +148,7 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
     }
     public Cursor getNotes(String username) {
         db = this.getWritableDatabase();
-        String sqlSelect = "SELECT " + TB2_COL_3 + ", " + TB2_COL_4 +
+        String sqlSelect = "SELECT " + TB2_COL_1 + ", " + TB2_COL_3 + ", " + TB2_COL_4 +
                 " FROM " + TABLE_2 + " WHERE username = ?";
         Cursor userCursor = db.rawQuery(sqlSelect, new String[] {username});
         return userCursor;

@@ -29,7 +29,10 @@ import com.example.takenote.R;
 import com.example.takenote.TakeNoteDatabase;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.HashMap;
+
 public class NotesFragment extends Fragment {
+    private int id;
     private TakeNoteDatabase myDb;
     private View root;
     private Bundle bundle;
@@ -39,11 +42,14 @@ public class NotesFragment extends Fragment {
     private FloatingActionButton addButton;
     private Context contextThemeWrapper;
     private String noteTitle, noteContent, un;
+    private HashMap hm;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 //        System.out.println("ON CREATE");
         // region Mapping of Objects
+        hm = new HashMap();
+        id = 1;
         contextThemeWrapper = new ContextThemeWrapper(getActivity(), R.style.NoteFragmentStyle);
         localInflater = inflater.cloneInContext(contextThemeWrapper);
         root = localInflater.inflate(R.layout.fragment_notes, container, false);
@@ -56,7 +62,11 @@ public class NotesFragment extends Fragment {
 //        System.out.println(un);
         // endregion
 
-        retrieveNotesFromDatabase();
+        try {
+            retrieveNotesFromDatabase();    // retrieve the notes stored in database
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
         layout.setMargins(40, 40, 40, 40);
 
@@ -113,10 +123,14 @@ public class NotesFragment extends Fragment {
             System.out.println("userCursor is null");
         }
         while (cursor.moveToNext()) {
-            noteTitle = cursor.getString(0);
-            System.out.println("TITLE: " + noteTitle);
-            noteContent = cursor.getString(1);
-            System.out.println("CONTENT: " + noteContent);
+            int noteNumber = cursor.getInt(0);
+//            System.out.println(noteNumber);
+            noteTitle = cursor.getString(1);
+//            System.out.println(cursor.getString(1));
+            noteContent = cursor.getString(2);
+//            System.out.println(cursor.getString(2));
+            hm.put(id, noteNumber);
+            System.out.println("HMAP: " + hm);
             addTextView(noteTitle, noteContent);
         }
     }
@@ -136,6 +150,11 @@ public class NotesFragment extends Fragment {
             }
         });
         linearLayout.addView(anotherTextView);
+        anotherTextView.setId(id);
+        System.out.println("TV ID: " + anotherTextView.getId());
+        System.out.println(linearLayout.findViewById(id));
+
+        id++;
         registerForContextMenu(anotherTextView);
     }   // For the retrieved items
     @Override
@@ -158,7 +177,6 @@ public class NotesFragment extends Fragment {
                 }
                 break;
         }
-
     }
     @Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
@@ -175,6 +193,7 @@ public class NotesFragment extends Fragment {
                 break;
             case R.id.deleteContextItem:
                 Toast.makeText(getActivity().getApplicationContext(), "Delete", Toast.LENGTH_SHORT).show();
+
                 deleteNote();
                 break;
             default:
@@ -183,7 +202,7 @@ public class NotesFragment extends Fragment {
         return true;
     }
     public void deleteNote() {
-
+        System.out.println(hm);
     }
 }
 
