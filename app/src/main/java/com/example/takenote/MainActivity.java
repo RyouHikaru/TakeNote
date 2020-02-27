@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new NotesFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_note);
-            Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.menu_home);
+            Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.notes);
         }
 
         dialogListener = new DialogInterface.OnShowListener() {

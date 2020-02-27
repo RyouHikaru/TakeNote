@@ -148,15 +148,30 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
     }
     public Cursor getNotes(String username) {
         db = this.getWritableDatabase();
-        String sqlSelect = "SELECT " + TB2_COL_3 + ", " + TB2_COL_4 +
+        String sqlSelect = "SELECT " + TB2_COL_1 + ", " + TB2_COL_3 + ", " + TB2_COL_4 +
                 " FROM " + TABLE_2 + " WHERE username = ?";
         Cursor userCursor = db.rawQuery(sqlSelect, new String[] {username});
         return userCursor;
     }
-    public boolean deleteNote(String username) {
+    public boolean deleteNote(int noteNo, String username) {
         db = this.getWritableDatabase();
-        String sqlSelect = "SELECT " + TB2_COL_3 + ", " + TB2_COL_4 +
-                " FROM " + TABLE_2 + " WHERE username = ?";
-        return false;
+        long results = db.delete(TABLE_2, TB2_COL_1 + " = ? AND " + TB3_COL_2 + " = ?", new String[] {Integer.toString(noteNo), username});
+
+        if (results == -1) {
+            System.out.println("NOT DELETED IN DB");
+            return false;
+        }
+        else {
+            System.out.println("DELETED IN DB");
+            return true;
+        }
+    }
+    public int getLastRowId() {
+        db = this.getWritableDatabase();
+        String sql = "SELECT MAX(" + TB2_COL_1 + ") FROM " + TABLE_2;
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToNext();
+        int max = cursor.getInt(0);
+        return max;
     }
 }
