@@ -166,4 +166,12 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
             return true;
         }
     }
+    public int getLastRowId() {
+        db = this.getWritableDatabase();
+        String sql = "SELECT MAX(" + TB2_COL_1 + ") FROM " + TABLE_2;
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToNext();
+        int max = cursor.getInt(0);
+        return max;
+    }
 }

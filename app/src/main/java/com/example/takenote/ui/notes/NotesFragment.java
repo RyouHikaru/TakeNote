@@ -177,8 +177,7 @@ public class NotesFragment extends Fragment {
         });
 
         textViewId++;
-//        registerForContextMenu(anotherTextView);
-    }   // For the retrieved items
+    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         switch (requestCode) {
@@ -195,36 +194,12 @@ public class NotesFragment extends Fragment {
                     else {
                         Toast.makeText(getActivity().getApplicationContext(), "Note Not Added", Toast.LENGTH_SHORT).show();
                     }
+                    int noteNo = myDb.getLastRowId();
+                    hm.put(textViewId, noteNo);
                     addTextView(noteTitle, noteContent);
                 }
                 break;
         }
-    }
-    @Override
-    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater = getActivity().getMenuInflater();
-        inflater.inflate(R.menu.notes_context_menu, menu);
-        menu.setHeaderTitle("What to do?");
-    }
-    @Override
-    public boolean onContextItemSelected(MenuItem item){
-        switch(item.getItemId()) {
-            case R.id.editContextItem:
-                Toast.makeText(getActivity().getApplicationContext(), "Edit", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.deleteContextItem:
-                Toast.makeText(getActivity().getApplicationContext(), "Delete", Toast.LENGTH_SHORT).show();
-
-                deleteNote();
-                break;
-            default:
-                return false;
-        }
-        return true;
-    }
-    public void deleteNote() {
-        System.out.println(hm);
     }
 }
 
