@@ -24,6 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.takenote.EditNoteDialog;
 import com.example.takenote.InputNoteDialog;
 import com.example.takenote.R;
 import com.example.takenote.TakeNoteDatabase;
@@ -33,6 +34,7 @@ import java.util.HashMap;
 
 public class NotesFragment extends Fragment {
     private int textViewId;
+    private int forEditTextViewId;
     private TakeNoteDatabase myDb;
     private View root;
     private Bundle bundle;
@@ -42,6 +44,7 @@ public class NotesFragment extends Fragment {
     private FloatingActionButton addButton;
     private Context contextThemeWrapper;
     private String noteTitle, noteContent, un;
+    private View.OnLongClickListener longClickListener;
     private HashMap hm;
 
 
@@ -61,6 +64,14 @@ public class NotesFragment extends Fragment {
         un = bundle.getString("UN");
 //        System.out.println(un);
         // endregion
+
+        longClickListener = new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                return false;
+            }
+        };
 
         try {
             retrieveNotesFromDatabase();    // retrieve the notes stored in database
@@ -84,6 +95,21 @@ public class NotesFragment extends Fragment {
         InputNoteDialog dialog = new InputNoteDialog();
         dialog.setTargetFragment(this, 0);
         dialog.show(getActivity().getSupportFragmentManager(), "Note input");
+    }
+    public void openEditDialog(int textViewId) {
+        try {
+//            System.out.println("HashMap: " + hm.get(textViewId)); CLEAR
+            EditNoteDialog dialog = new EditNoteDialog();
+            Bundle bundle = new Bundle();
+            bundle.putInt("ID", textViewId);
+            dialog.setArguments(bundle);
+
+            dialog.setTargetFragment(this, 1);
+            dialog.show(getActivity().getSupportFragmentManager(), "Note edit");
+
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
     public void showItemDialog(String title, String content) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.DialogStyle);
@@ -159,19 +185,21 @@ public class NotesFragment extends Fragment {
         anotherTextView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                System.out.println(hm.get(anotherTextView.getId()));
-                try {
-                    boolean isDeleted = myDb.deleteNote(Integer.parseInt(hm.get(anotherTextView.getId()).toString()), un);
-                    linearLayout.removeView(anotherTextView);
-                    if (isDeleted == true) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Note Deleted", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getActivity().getApplicationContext(), "Note not Deleted", Toast.LENGTH_SHORT).show();
-                    }
-                }
-                catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
+               openEditDialog(anotherTextView.getId());
+
+//                System.out.println(hm.get(anotherTextView.getId()));
+//                try {
+//                    boolean isDeleted = myDb.deleteNote(Integer.parseInt(hm.get(anotherTextView.getId()).toString()), un);
+//                    linearLayout.removeView(anotherTextView);
+//                    if (isDeleted == true) {
+//                        Toast.makeText(getActivity().getApplicationContext(), "Note Deleted", Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        Toast.makeText(getActivity().getApplicationContext(), "Note not Deleted", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//                catch (Exception e) {
+//                    System.out.println(e.getMessage());
+//                }
                 return true;
             }
         });
@@ -197,6 +225,38 @@ public class NotesFragment extends Fragment {
                     int noteNo = myDb.getLastRowId();
                     hm.put(textViewId, noteNo);
                     addTextView(noteTitle, noteContent);
+                }
+                break;
+            case 1:
+                try {
+                    if (resultCode == Activity.RESULT_OK) {
+                        Bundle bundle = data.getExtras();
+                        forEditTextViewId = bundle.getInt("TVID");
+                        noteTitle = bundle.getString("TITLE");
+                        noteContent = bundle.getString("CONTENT");
+                        int id = Integer.parseInt(hm.get(forEditTextViewId).toString());
+
+//                        System.out.println("TVID: " + forEditTextViewId
+//                        + "\nNEWTITLE: " + noteTitle
+//                        + "\nNEWCONTENT: " + noteContent);    CLEAR
+
+                        boolean isEdited = myDb.editNote(id, un, noteTitle, noteContent);
+                        if (isEdited == true) {
+                            Toast.makeText(getActivity().getApplicationContext(), "Note Edited", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getActivity().getApplicationContext(), "Note Not Added", Toast.LENGTH_SHORT).show();
+                        }
+                        TextView thisTextView = linearLayout.findViewById(forEditTextViewId);
+                        thisTextView.setText(noteTitle);
+                        thisTextView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showItemDialog(noteTitle, noteContent);
+                            }
+                        });
+                    }
+                }catch (Exception e) {
+                    System.out.println(e.getMessage());
                 }
                 break;
         }

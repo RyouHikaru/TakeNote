@@ -174,4 +174,21 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
         int max = cursor.getInt(0);
         return max;
     }
+    public boolean editNote(int noteNo, String username, String newTitle, String newContent) {
+        db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TB2_COL_3, newTitle);
+        contentValues.put(TB2_COL_4, newContent);
+
+        long results = db.update(TABLE_2, contentValues, TB2_COL_1 + " = ? AND " + TB2_COL_2 + " = ?", new String[] {Integer.toString(noteNo), username});
+
+        if (results == -1) {
+            System.out.println("Mission failed");
+            return  false;
+        }
+        else {
+            System.out.println("Mission success");
+            return true;
+        }
+    }
 }
