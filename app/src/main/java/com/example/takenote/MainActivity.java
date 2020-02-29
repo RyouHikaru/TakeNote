@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         break;
                     case R.id.nav_reminder:
                         getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).
-                                replace(R.id.fragment_container, new RemindersFragment()).commit();
+                                replace(R.id.fragment_container, new ReminderFragment()).commit();
                         Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.reminders);
                         break;
                     case R.id.nav_archive:

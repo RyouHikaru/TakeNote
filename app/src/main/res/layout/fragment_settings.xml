@@ -37,6 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/fortydp"
         android:layout_marginBottom="@dimen/fortydp"
+        android:background="@drawable/inner_button_design"
         android:text="@string/save"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"

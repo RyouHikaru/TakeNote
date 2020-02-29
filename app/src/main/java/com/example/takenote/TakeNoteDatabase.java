@@ -53,8 +53,8 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
         System.out.println("Users Table Created");
         db.execSQL(createNotesTable);
         System.out.println("Notes Table Created");
-//        db.execSQL(createRemindersTable);
-//        System.out.println("Reminders Table Created");
+        db.execSQL(createRemindersTable);
+        System.out.println("Reminders Table Created");
 
         // DEFAULT SETTINGS
         db.execSQL("CREATE TABLE settings (dark_mode INTEGER, notifications INTEGER)");
@@ -101,9 +101,18 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
         cursor.close();
         return new int[] {d, n};
     }
-    public int getLastRowId() {
+    public int getNotesLastRowId() {
         db = this.getWritableDatabase();
         String sql = "SELECT MAX(" + TB2_COL_1 + ") FROM " + TABLE_2;
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToNext();
+        int max = cursor.getInt(0);
+        cursor.close();
+        return max;
+    }
+    public int getRemindersLastRowId() {
+        db = this.getWritableDatabase();
+        String sql = "SELECT MAX(" + TB3_COL_1 + ") FROM " + TABLE_3;
         Cursor cursor = db.rawQuery(sql, null);
         cursor.moveToNext();
         int max = cursor.getInt(0);
@@ -168,9 +177,40 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
             return true;
         }
     }
+    public boolean insertReminder(String username, String title, String content) {
+        db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TB3_COL_2, username);
+        contentValues.put(TB3_COL_3, title);
+        contentValues.put(TB3_COL_4, content);
+
+        long insertResult = db.insert(TABLE_3, null, contentValues);
+        System.out.println(insertResult);
+        if (insertResult == -1) {
+            System.out.println("Reminder not inserted");
+            return false;
+        }
+        else {
+            System.out.println("Reminder inserted");
+            return true;
+        }
+    }
     public boolean deleteNote(int noteNo, String username) {
         db = this.getWritableDatabase();
-        long results = db.delete(TABLE_2, TB2_COL_1 + " = ? AND " + TB3_COL_2 + " = ?", new String[] {Integer.toString(noteNo), username});
+        long results = db.delete(TABLE_2, TB2_COL_1 + " = ? AND " + TB2_COL_2 + " = ?", new String[] {Integer.toString(noteNo), username});
+
+        if (results == -1) {
+            System.out.println("NOT DELETED IN DB");
+            return false;
+        }
+        else {
+            System.out.println("DELETED IN DB");
+            return true;
+        }
+    }
+    public boolean deleteReminder(int noteNo, String username) {
+        db = this.getWritableDatabase();
+        long results = db.delete(TABLE_3, TB3_COL_1 + " = ? AND " + TB3_COL_2 + " = ?", new String[] {Integer.toString(noteNo), username});
 
         if (results == -1) {
             System.out.println("NOT DELETED IN DB");
@@ -188,6 +228,23 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
         contentValues.put(TB2_COL_4, newContent);
 
         long results = db.update(TABLE_2, contentValues, TB2_COL_1 + " = ? AND " + TB2_COL_2 + " = ?", new String[] {Integer.toString(noteNo), username});
+
+        if (results == -1) {
+            System.out.println("Mission failed");
+            return  false;
+        }
+        else {
+            System.out.println("Mission success");
+            return true;
+        }
+    }
+    public boolean editReminder(int noteNo, String username, String newTitle, String newContent) {
+        db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TB3_COL_3, newTitle);
+        contentValues.put(TB3_COL_4, newContent);
+
+        long results = db.update(TABLE_3, contentValues, TB3_COL_1 + " = ? AND " + TB3_COL_2 + " = ?", new String[] {Integer.toString(noteNo), username});
 
         if (results == -1) {
             System.out.println("Mission failed");
@@ -227,6 +284,13 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
         db = this.getWritableDatabase();
         String sqlSelect = "SELECT " + TB2_COL_1 + ", " + TB2_COL_3 + ", " + TB2_COL_4 +
                 " FROM " + TABLE_2 + " WHERE username = ?";
+        Cursor userCursor = db.rawQuery(sqlSelect, new String[] {username});
+        return userCursor;
+    }
+    public Cursor getReminders(String username) {
+        db = this.getWritableDatabase();
+        String sqlSelect = "SELECT " + TB3_COL_1 + ", " + TB3_COL_3 + ", " + TB3_COL_4 +
+                " FROM " + TABLE_3 + " WHERE username = ?";
         Cursor userCursor = db.rawQuery(sqlSelect, new String[] {username});
         return userCursor;
     }

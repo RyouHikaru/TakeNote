@@ -25,7 +25,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.HashMap;
 
-public class NotesFragment extends Fragment {
+public class ReminderFragment extends Fragment {
     // region Object and Variables
     private int textViewId;
     private int forEditTextViewId;
@@ -37,7 +37,7 @@ public class NotesFragment extends Fragment {
     private LayoutInflater localInflater;
     private FloatingActionButton addButton;
     private Context contextThemeWrapper;
-    private String noteTitle, noteContent, un;
+    private String reminderTitle, reminderContent, un;
     private View.OnLongClickListener longClickListener;
     private HashMap hm;
     // endregion
@@ -49,9 +49,9 @@ public class NotesFragment extends Fragment {
         textViewId = 1;
         contextThemeWrapper = new ContextThemeWrapper(getActivity(), R.style.NoteFragmentStyle);
         localInflater = inflater.cloneInContext(contextThemeWrapper);
-        root = localInflater.inflate(R.layout.fragment_notes, container, false);
-        addButton = root.findViewById(R.id.notes_floatingActionButton);
-        linearLayout = root.findViewById(R.id.notes_linear_layout);
+        root = localInflater.inflate(R.layout.fragment_reminder, container, false);
+        addButton = root.findViewById(R.id.reminder_floatingActionButton);
+        linearLayout = root.findViewById(R.id.reminder_linear_layout);
         layout = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         bundle = getActivity().getIntent().getExtras();
         myDb = new TakeNoteDatabase(getActivity().getApplicationContext());
@@ -60,11 +60,10 @@ public class NotesFragment extends Fragment {
         // endregion
 
         try {
-            retrieveNotesFromDatabase();    // retrieve the notes stored in database
+            retrieveRemindersFromDatabase();    // retrieve the notes stored in database
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
         layout.setMargins(40, 40, 40, 40);
 
         // region Programmatically added TextViews
@@ -78,7 +77,7 @@ public class NotesFragment extends Fragment {
         return root;
     }
     public void openInputDialog() {
-        InputNoteDialog dialog = new InputNoteDialog();
+        InputReminderDialog dialog = new InputReminderDialog();
         dialog.setTargetFragment(this, 0);
         dialog.show(getActivity().getSupportFragmentManager(), "Note input");
     }
@@ -128,23 +127,23 @@ public class NotesFragment extends Fragment {
 
         itemDialog.show();
     }   // For the retrieved items
-    public void retrieveNotesFromDatabase() {
-        Cursor cursor = myDb.getNotes(un);
+    public void retrieveRemindersFromDatabase() {
+        Cursor cursor = myDb.getReminders(un);
 
         if (cursor == null) {
             System.out.println("userCursor is null");
         }
         while (cursor.moveToNext()) {
-            int noteNumber = cursor.getInt(0);
-//            System.out.println(noteNumber);
-            noteTitle = cursor.getString(1);
+            int reminderNumber = cursor.getInt(0);
+//            System.out.println(reminderNumber);
+            reminderTitle = cursor.getString(1);
 //            System.out.println(cursor.getString(1));
-            noteContent = cursor.getString(2);
+            reminderContent = cursor.getString(2);
 //            System.out.println(cursor.getString(2));
-            System.out.println("ID: " + textViewId + " noteNumber: " + noteNumber);
-            hm.put(textViewId, noteNumber);
+            System.out.println("ID: " + textViewId + " reminderNumber: " + reminderNumber);
+            hm.put(textViewId, reminderNumber);
             System.out.println("HMAP: " + hm);
-            addTextView(noteTitle, noteContent);
+            addTextView(reminderTitle, reminderContent);
         }
     }
     private void addTextView(final String title, final String content) {
@@ -182,7 +181,7 @@ public class NotesFragment extends Fragment {
                                                 openEditDialog(anotherTextView.getId());
                                                 break;
                                             case "Delete":
-                                                boolean isDeleted = myDb.deleteNote(Integer.parseInt(hm.get(anotherTextView.getId()).toString()), un);
+                                                boolean isDeleted = myDb.deleteReminder(Integer.parseInt(hm.get(anotherTextView.getId()).toString()), un);
                                                 linearLayout.removeView(anotherTextView);
                                                 if (isDeleted == true) {
                                                     Toast.makeText(getActivity().getApplicationContext(), "Note Deleted", Toast.LENGTH_SHORT).show();
@@ -209,19 +208,19 @@ public class NotesFragment extends Fragment {
             case 0:
                 if (resultCode == Activity.RESULT_OK) {
                     Bundle bundle = data.getExtras();
-                    noteTitle = bundle.getString("TITLE");
-                    noteContent = bundle.getString("CONTENT");
+                    reminderTitle = bundle.getString("TITLE");
+                    reminderContent = bundle.getString("CONTENT");
 
-                    boolean isInserted = myDb.insertNote(un, noteTitle, noteContent);
+                    boolean isInserted = myDb.insertReminder(un, reminderTitle, reminderContent);
                     if (isInserted == true) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Note Added", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "Reminder Added", Toast.LENGTH_SHORT).show();
                     }
                     else {
-                        Toast.makeText(getActivity().getApplicationContext(), "Note Not Added", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "Reminder Not Added", Toast.LENGTH_SHORT).show();
                     }
-                    int noteNo = myDb.getNotesLastRowId();
-                    hm.put(textViewId, noteNo);
-                    addTextView(noteTitle, noteContent);
+                    int reminderNo = myDb.getRemindersLastRowId();
+                    hm.put(textViewId, reminderNo);
+                    addTextView(reminderTitle, reminderContent);
                 }
                 break;
             case 1:
@@ -229,26 +228,26 @@ public class NotesFragment extends Fragment {
                     if (resultCode == Activity.RESULT_OK) {
                         Bundle bundle = data.getExtras();
                         forEditTextViewId = bundle.getInt("TVID");
-                        noteTitle = bundle.getString("TITLE");
-                        noteContent = bundle.getString("CONTENT");
+                        reminderTitle = bundle.getString("TITLE");
+                        reminderContent = bundle.getString("CONTENT");
                         int id = Integer.parseInt(hm.get(forEditTextViewId).toString());
 
 //                        System.out.println("TVID: " + forEditTextViewId
-//                        + "\nNEWTITLE: " + noteTitle
-//                        + "\nNEWCONTENT: " + noteContent);    CLEAR
+//                        + "\nNEWTITLE: " + reminderTitle
+//                        + "\nNEWCONTENT: " + reminderContent);    CLEAR
 
-                        boolean isEdited = myDb.editNote(id, un, noteTitle, noteContent);
+                        boolean isEdited = myDb.editReminder(id, un, reminderTitle, reminderContent);
                         if (isEdited == true) {
-                            Toast.makeText(getActivity().getApplicationContext(), "Note Edited", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity().getApplicationContext(), "Reminder Edited", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(getActivity().getApplicationContext(), "Note Not Edited", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity().getApplicationContext(), "Reminder Not Edited", Toast.LENGTH_SHORT).show();
                         }
                         TextView thisTextView = linearLayout.findViewById(forEditTextViewId);
-                        thisTextView.setText(noteTitle);
+                        thisTextView.setText(reminderTitle);
                         thisTextView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                showItemDialog(noteTitle, noteContent);
+                                showItemDialog(reminderTitle, reminderContent);
                             }
                         });
                     }
