@@ -48,5 +48,12 @@
     <string name="enter_first_name">Enter first name</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="notifications">Notifications</string>
+    <string name="save">Save</string>
 
+    <string-array name="noteOptions">
+        <item>Edit</item>
+        <item>Delete</item>
+    </string-array>
 </resources>

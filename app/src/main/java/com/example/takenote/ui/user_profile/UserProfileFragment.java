@@ -29,6 +29,14 @@ public class UserProfileFragment extends Fragment {
         eTV = root.findViewById(R.id.emailTextView);
         myDb = new TakeNoteDatabase(getActivity());
 
+        int[] set = myDb.getSettings();
+        if (set[0] == 1) {
+            fnTV.setTextColor(getResources().getColor(R.color.default_whitish_color));
+            lnTV.setTextColor(getResources().getColor(R.color.default_whitish_color));
+            aTV.setTextColor(getResources().getColor(R.color.default_whitish_color));
+            eTV.setTextColor(getResources().getColor(R.color.default_whitish_color));
+        }
+
         username = getActivity().getIntent().getStringExtra("UN");
         System.out.println(username);
 

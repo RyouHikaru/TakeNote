@@ -2,9 +2,11 @@
 <resources>
     <color name="colorPrimary">#3C3C3C</color>
     <color name="colorPrimaryDark">#454B49</color>
-    <color name="colorAccent">#131212</color>
-    <color name="black">#131212</color>
+    <color name="colorAccent">#000000</color>
+
     <color name="default_color">#7c7c7c</color>
     <color name="default_whitish_color">#C5C4C4</color>
     <color name="notes_unselected_color">#B7B8BD</color>
+
+    <color name="white">#FFFFFF</color>
 </resources>

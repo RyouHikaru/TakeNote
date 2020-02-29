@@ -38,5 +38,6 @@
         <item name="android:background">@color/colorPrimary</item>
         <item name="android:textColor">@color/default_whitish_color</item>
         <item name="android:textColorPrimary">@color/default_whitish_color</item>
+        <item name="android:textColorAlertDialogListItem">@color/default_whitish_color</item>
     </style>
 </resources>

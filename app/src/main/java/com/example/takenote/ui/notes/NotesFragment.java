@@ -181,25 +181,36 @@ public class NotesFragment extends Fragment {
 //        System.out.println("TV ID: " + anotherTextView.getId());
 //        System.out.println(linearLayout.findViewById(textViewId));
 
-
         anotherTextView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-               openEditDialog(anotherTextView.getId());
+                final String[] options = getResources().getStringArray(R.array.noteOptions);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.DialogStyle);
+                builder.setTitle("What to do?")
+                        .setItems(options, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+//                                        Toast.makeText(getActivity().getApplicationContext(), options[which], Toast.LENGTH_SHORT).show();
+                                        switch (options[which]) {
+                                            case "Edit":
+                                                openEditDialog(anotherTextView.getId());
+                                                break;
+                                            case "Delete":
+                                                boolean isDeleted = myDb.deleteNote(Integer.parseInt(hm.get(anotherTextView.getId()).toString()), un);
+                                                linearLayout.removeView(anotherTextView);
+                                                if (isDeleted == true) {
+                                                    Toast.makeText(getActivity().getApplicationContext(), "Note Deleted", Toast.LENGTH_SHORT).show();
+                                                } else {
+                                                    Toast.makeText(getActivity().getApplicationContext(), "Note not Deleted", Toast.LENGTH_SHORT).show();
+                                                }
+                                                break;
+                                        }
+                                    }
+                                });
 
-//                System.out.println(hm.get(anotherTextView.getId()));
-//                try {
-//                    boolean isDeleted = myDb.deleteNote(Integer.parseInt(hm.get(anotherTextView.getId()).toString()), un);
-//                    linearLayout.removeView(anotherTextView);
-//                    if (isDeleted == true) {
-//                        Toast.makeText(getActivity().getApplicationContext(), "Note Deleted", Toast.LENGTH_SHORT).show();
-//                    } else {
-//                        Toast.makeText(getActivity().getApplicationContext(), "Note not Deleted", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//                catch (Exception e) {
-//                    System.out.println(e.getMessage());
-//                }
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
                 return true;
             }
         });

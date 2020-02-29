@@ -24,7 +24,6 @@ public class EditNoteDialog extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final int id = getArguments().getInt("ID");
-//        System.out.println("EDialog recieved ID: " + id); CLEAR
         builder = new AlertDialog.Builder(getActivity());
         contextThemeWrapper = new ContextThemeWrapper(getActivity(), R.style.NoteFragmentStyle);
         LayoutInflater inflater = getActivity().getLayoutInflater().cloneInContext(contextThemeWrapper);

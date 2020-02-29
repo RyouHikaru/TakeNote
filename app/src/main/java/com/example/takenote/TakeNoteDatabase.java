@@ -51,10 +51,44 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
         System.out.println("Users Table Created");
         db.execSQL(createNotesTable);
         System.out.println("Notes Table Created");
-        db.execSQL(createRemindersTable);
-        System.out.println("Reminders Table Created");
-    }
+//        db.execSQL(createRemindersTable);
+//        System.out.println("Reminders Table Created");
 
+        // DEFAULT SETTINGS
+        db.execSQL("CREATE TABLE settings (dark_mode INTEGER, notifications INTEGER)");
+        System.out.println("Settings Table Created");
+
+        try {
+            ContentValues cv = new ContentValues();
+            cv.put("dark_mode", 0);
+            cv.put("notifications", 0);
+            long results = db.insert("settings", null, cv);
+            if (results == -1)
+                System.out.println("Not set");
+            else
+                System.out.println("Set");
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public void editSettings(int d, int n) {
+        db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("dark_mode", d);
+        cv.put("notifications", n);
+
+        db.update("settings", cv, null, null);
+        System.out.println("Settings updated in DB");
+    }
+    public int[] getSettings() {
+        db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM settings", null);
+        cursor.moveToNext();
+        int d = cursor.getInt(0);
+        int n = cursor.getInt(1);
+
+        return new int[] {d, n};
+    }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String dropUsersTable = "DROP TABLE IF EXISTS " + TABLE_1;
