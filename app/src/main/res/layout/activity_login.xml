@@ -21,7 +21,7 @@
     <Button
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/fortydp"
         android:layout_marginTop="@dimen/tendp"
         android:background="@drawable/button_selector"
         android:text="@string/login_label"
@@ -33,7 +33,7 @@
     <Button
         android:id="@+id/cancelButton"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/fortydp"
         android:layout_marginTop="10dp"
         android:background="@drawable/button_selector"
         android:text="@string/cancel_button_label"
@@ -45,8 +45,8 @@
 
     <TextView
         android:id="@+id/unTextView"
-        android:layout_width="118dp"
-        android:layout_height="36dp"
+        android:layout_width="@dimen/signup_login_label_width"
+        android:layout_height="@dimen/thirtyfivedp"
         android:layout_marginTop="@dimen/thirtyfivedp"
         android:fontFamily="sans-serif-medium"
         android:text="@string/un_label"
@@ -59,8 +59,8 @@
 
     <TextView
         android:id="@+id/pwTextView"
-        android:layout_width="117dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/signup_login_label_width"
+        android:layout_height="@dimen/fortydp"
         android:layout_marginTop="@dimen/twentydp"
         android:fontFamily="sans-serif-medium"
         android:text="@string/pw_label"

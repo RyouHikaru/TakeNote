@@ -14,8 +14,8 @@
 
     <ImageView
         android:id="@+id/navImageView"
-        android:layout_width="78dp"
-        android:layout_height="77dp"
+        android:layout_width="@dimen/seventysevendp"
+        android:layout_height="@dimen/seventysevendp"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         app:srcCompat="@drawable/tn_icon" />
@@ -35,6 +35,6 @@
         android:layout_height="wrap_content"
         android:text="@string/nav_header_subtitle"
         android:textColor="@color/default_whitish_color"
-        android:textSize="12sp" />
+        android:textSize="@dimen/twelvesp" />
 
 </LinearLayout>

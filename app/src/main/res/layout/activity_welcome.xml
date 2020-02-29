@@ -8,10 +8,11 @@
 
     <ImageView
         android:id="@+id/appLogo"
-        android:layout_width="169dp"
-        android:layout_height="207dp"
+        android:layout_width="@dimen/hundredseventydp"
+        android:layout_height="@dimen/twohundreddp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.402"
@@ -19,8 +20,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="240dp"
-        android:layout_height="58dp"
+        android:layout_width="@dimen/twohundredfortydp"
+        android:layout_height="@dimen/sixtydp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appLogo"

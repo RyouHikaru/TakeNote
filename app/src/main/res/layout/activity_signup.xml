@@ -28,9 +28,9 @@
 
         <TextView
             android:id="@+id/emailTextView"
-            android:layout_width="117dp"
+            android:layout_width="@dimen/signup_login_label_width"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/tendp"
             android:fontFamily="sans-serif-medium"
             android:text="@string/email"
             android:textColor="@color/colorAccent"
@@ -42,9 +42,9 @@
 
         <TextView
             android:id="@+id/addressTextView"
-            android:layout_width="117dp"
+            android:layout_width="@dimen/signup_login_label_width"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/tendp"
             android:fontFamily="sans-serif-medium"
             android:text="@string/address"
             android:textColor="@color/colorAccent"
@@ -68,9 +68,9 @@
 
         <TextView
             android:id="@+id/lnTextView"
-            android:layout_width="117dp"
+            android:layout_width="@dimen/signup_login_label_width"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/tendp"
             android:fontFamily="sans-serif-medium"
             android:text="@string/last_name"
             android:textColor="@color/colorAccent"
@@ -106,9 +106,9 @@
 
         <TextView
             android:id="@+id/fnTextView"
-            android:layout_width="117dp"
+            android:layout_width="@dimen/signup_login_label_width"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/tendp"
             android:fontFamily="sans-serif-medium"
             android:text="@string/first_name"
             android:textColor="@color/colorAccent"
@@ -131,8 +131,8 @@
         <Button
             android:id="@+id/signUpCancelButton"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="@dimen/fortydp"
+            android:layout_marginTop="@dimen/twentydp"
             android:background="@drawable/button_selector"
             android:text="@string/cancel_button_label"
             android:textColor="@color/colorPrimaryDark"
@@ -144,8 +144,8 @@
         <Button
             android:id="@+id/signUpButton"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="@dimen/fortydp"
+            android:layout_marginTop="@dimen/twentydp"
             android:background="@drawable/button_selector"
             android:text="@string/signup_label"
             app:layout_constraintEnd_toStartOf="@+id/signUpCancelButton"
@@ -155,9 +155,9 @@
 
         <TextView
             android:id="@+id/pwTextView"
-            android:layout_width="117dp"
+            android:layout_width="@dimen/signup_login_label_width"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/tendp"
             android:fontFamily="sans-serif-medium"
             android:text="@string/pw_label"
             android:textColor="@color/colorAccent"
@@ -181,9 +181,9 @@
 
         <TextView
             android:id="@+id/unTextView"
-            android:layout_width="118dp"
-            android:layout_height="36dp"
-            android:layout_marginTop="35dp"
+            android:layout_width="@dimen/signup_login_label_width"
+            android:layout_height="@dimen/thirtyfivedp"
+            android:layout_marginTop="@dimen/thirtyfivedp"
             android:fontFamily="sans-serif-medium"
             android:text="@string/un_label"
             android:textColor="@color/colorAccent"

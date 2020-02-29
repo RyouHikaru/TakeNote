@@ -14,8 +14,8 @@
 
     <ImageView
         android:id="@+id/navImageView"
-        android:layout_width="78dp"
-        android:layout_height="77dp"
+        android:layout_width="@dimen/seventysevendp"
+        android:layout_height="@dimen/seventysevendp"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         app:srcCompat="@drawable/tn_icon" />
@@ -27,14 +27,14 @@
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="@string/nav_header_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#FFFFFF" />
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/navSubtitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nav_header_subtitle"
-        android:textColor="#FFFFFF"
-        android:textSize="12sp" />
+        android:textColor="@color/white"
+        android:textSize="@dimen/twelvesp" />
 
 </LinearLayout>
