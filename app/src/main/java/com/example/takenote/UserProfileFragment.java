@@ -9,17 +9,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
-
-import com.example.takenote.R;
-import com.example.takenote.TakeNoteDatabase;
 
 public class UserProfileFragment extends Fragment {
-    private TakeNoteDatabase myDb;
+    private static TakeNoteDatabase myDb;
     private View root;
-    private Cursor userCursor;
+    private static Cursor userCursor;
     private TextView fnTV, lnTV, aTV, eTV;
-    private String username;
+    private static String username;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_user_profile, container, false);

@@ -17,13 +17,14 @@ public class SignUpActivity extends AppCompatActivity {
     private static int TIME_DELAY = 2000;
     private Button signupButton, cancelButton;
     private EditText unEditText, pwEditText, fnEditText, lnEditText, addEditText, emailEditText;
-    private TakeNoteDatabase myDb;
+    private static TakeNoteDatabase myDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        // region XML Mapping
         unEditText = findViewById(R.id.su_unEditText);
         pwEditText = findViewById(R.id.su_pwEditText);
         fnEditText = findViewById(R.id.firstNameEditText);
@@ -31,13 +32,14 @@ public class SignUpActivity extends AppCompatActivity {
         addEditText = findViewById(R.id.addressEditText);
         emailEditText = findViewById(R.id.emailEditText);
         myDb = new TakeNoteDatabase(this);
-
-        signupButton = (Button) findViewById(R.id.signUpButton);
-        cancelButton = (Button) findViewById(R.id.signUpCancelButton);
+        signupButton = findViewById(R.id.signUpButton);
+        cancelButton = findViewById(R.id.signUpCancelButton);
+        // endregion
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // region Sign-up Validation
                 String un = unEditText.getText().toString();
                 String pw = pwEditText.getText().toString();
                 String fn = fnEditText.getText().toString();
@@ -75,6 +77,7 @@ public class SignUpActivity extends AppCompatActivity {
                     emailEditText.requestFocus();
                     return;
                 }
+                // endregion
 
                 signupAlert(un, pw, fn, ln, a, em);
             }
@@ -241,14 +244,13 @@ public class SignUpActivity extends AppCompatActivity {
         alertDialogBuilder.setCancelable(false);
         AlertDialog alertDialog = alertDialogBuilder.create();
 
+        // region alertDialog OnShowListener
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(final DialogInterface dialog) {
-                // Add or create your own background drawable for AlertDialog window
                 Window view = ((android.app.AlertDialog)dialog).getWindow();
                 view.setBackgroundDrawableResource(R.color.colorPrimary);
 
-                // Customize POSITIVE and NEUTRAL buttons.
                 Button positiveButton = ((android.app.AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
                 positiveButton.setTextColor(getResources().getColor(R.color.default_whitish_color));
                 positiveButton.invalidate();
@@ -262,6 +264,8 @@ public class SignUpActivity extends AppCompatActivity {
                 negativeButton.invalidate();
             }
         });
+        // endregion
+
         alertDialog.show();
     }
 }

@@ -28,13 +28,15 @@ import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private int clickedNavItem;
-    private int[] settings;
-    private DrawerLayout drawer;
-    private NavigationView navigationView;
+    // region Object and Variables
+    private static int clickedNavItem;
+    private static int[] settings;
+    private static DrawerLayout drawer;
+    private static NavigationView navigationView;
     private Toolbar toolbar;
-    private DialogInterface.OnShowListener dialogListener;
-    private TakeNoteDatabase myDb;
+    private static DialogInterface.OnShowListener dialogListener;
+    private static TakeNoteDatabase myDb;
+    // endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +55,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer,
                 toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -69,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.notes);
         }
 
+        // region dialogListener properties
         dialogListener = new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 negativeButton.invalidate();
             }
         };
+        // endregion
 
         drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
@@ -103,7 +104,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).
                                 replace(R.id.fragment_container, new NotesFragment()).commit();
                         Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.notes);
-
                         break;
                     case R.id.nav_user_profile:
                         getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).
@@ -133,7 +133,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
     }
-
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -145,14 +144,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else
             super.onBackPressed();
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.options_menu, menu);
         return true;
     }
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -178,7 +175,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
     public void showLogoutDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this, R.style.DialogStyle);
         alertDialogBuilder.setTitle("Confirm Logout?");

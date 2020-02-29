@@ -6,11 +6,9 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.takenote.R;
-
 public class WelcomeActivity extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 2000;
-    private TakeNoteDatabase myDb;
+    private static TakeNoteDatabase myDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

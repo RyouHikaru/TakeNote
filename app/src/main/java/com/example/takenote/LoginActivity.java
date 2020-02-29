@@ -11,15 +11,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.takenote.R;
 
 public class LoginActivity extends AppCompatActivity {
+    // region Object and Variables
     private static int TIME_DELAY = 750;
     private Button loginButton, cancelButton;
     private TextView signUpView;
     private EditText unEditText, pwEditText;
-    private Intent intent;
-    private TakeNoteDatabase myDb;
+    private static Intent intent;
+    private static TakeNoteDatabase myDb;
+    // endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +32,16 @@ public class LoginActivity extends AppCompatActivity {
             System.exit(0);
         }
 
+        // region XML mapping
         loginButton = findViewById(R.id.loginButton);
         cancelButton = findViewById(R.id.cancelButton);
         signUpView = findViewById(R.id.signUpView);
         unEditText = findViewById(R.id.unEditText);
         pwEditText = findViewById(R.id.pwEditText);
         myDb = new TakeNoteDatabase(this);
+        // endregion
 
+        // region loginButton listener
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+        // endregion
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override

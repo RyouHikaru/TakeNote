@@ -7,11 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -24,15 +21,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.takenote.EditNoteDialog;
-import com.example.takenote.InputNoteDialog;
-import com.example.takenote.R;
-import com.example.takenote.TakeNoteDatabase;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.HashMap;
 
 public class NotesFragment extends Fragment {
+    // region Object and Variables
     private int textViewId;
     private int forEditTextViewId;
     private TakeNoteDatabase myDb;
@@ -46,7 +40,7 @@ public class NotesFragment extends Fragment {
     private String noteTitle, noteContent, un;
     private View.OnLongClickListener longClickListener;
     private HashMap hm;
-
+    // endregion
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 //        System.out.println("ON CREATE");

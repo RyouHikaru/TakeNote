@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class TakeNoteDatabase extends SQLiteOpenHelper {
+    // region Object and Variable
     private static final String DATABASE_NAME = "TakeNote.db";
     private static final String TABLE_1 = "users";
     private static final String TABLE_2 = "notes";
@@ -29,6 +30,7 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
     private static final String TB3_COL_3 = "reminder_title";
     private static final String TB3_COL_4 = "reminder_content";
     private SQLiteDatabase db;
+    // endregion
 
     public TakeNoteDatabase(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -71,6 +73,16 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
             System.out.println(e.getMessage());
         }
     }
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        String dropUsersTable = "DROP TABLE IF EXISTS " + TABLE_1;
+        String dropNotesTable = "DROP TABLE IF EXISTS " + TABLE_2;
+        String dropRemindersTable = "DROP TABLE IF EXISTS " + TABLE_3;
+
+        db.execSQL(dropUsersTable);
+        db.execSQL(dropNotesTable);
+        db.execSQL(dropRemindersTable);
+    }
     public void editSettings(int d, int n) {
         db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -86,18 +98,17 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
         cursor.moveToNext();
         int d = cursor.getInt(0);
         int n = cursor.getInt(1);
-
+        cursor.close();
         return new int[] {d, n};
     }
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String dropUsersTable = "DROP TABLE IF EXISTS " + TABLE_1;
-        String dropNotesTable = "DROP TABLE IF EXISTS " + TABLE_2;
-        String dropRemindersTable = "DROP TABLE IF EXISTS " + TABLE_3;
-
-        db.execSQL(dropUsersTable);
-        db.execSQL(dropNotesTable);
-        db.execSQL(dropRemindersTable);
+    public int getLastRowId() {
+        db = this.getWritableDatabase();
+        String sql = "SELECT MAX(" + TB2_COL_1 + ") FROM " + TABLE_2;
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToNext();
+        int max = cursor.getInt(0);
+        cursor.close();
+        return max;
     }
     public boolean signUp(String username, String password, String first_name, String last_name, String address, String email) {
         ContentValues contentValues = new ContentValues();
@@ -130,37 +141,14 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
 
         if (usernameCursor.getCount() == 0) {
             System.out.println("New user");
+            usernameCursor.close();
             return false;
         }
         else {
             System.out.println("Existing user");
+            usernameCursor.close();
             return true;
         }
-    }
-    public String getUserPassword(String username) {
-        db = this.getWritableDatabase();
-        String pw = null;
-        String sqlSelect = "SELECT password FROM " + TABLE_1 + " WHERE username = ?";
-        Cursor userCursor = db.rawQuery(sqlSelect, new String[] {username});
-
-        if (userCursor.getCount() == 0) {
-            System.out.println("User not found");
-            return pw;
-        }
-        else {
-            while (userCursor.moveToNext()) {
-                pw = userCursor.getString(0);
-                System.out.println(pw);
-            }
-        }
-        return pw;
-    }
-    public Cursor getUserDetails(String username) {
-        db = this.getWritableDatabase();
-        String sqlSelect = "SELECT " + TB1_COL_3 + ", " + TB1_COL_4 + ", " + TB1_COL_5 + ", " + TB1_COL_6 +
-                " FROM " + TABLE_1 + " WHERE username = ?";
-        Cursor userCursor = db.rawQuery(sqlSelect, new String[] {username});
-        return userCursor;
     }
     public boolean insertNote(String username, String title, String content) {
         db = this.getWritableDatabase();
@@ -180,13 +168,6 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
             return true;
         }
     }
-    public Cursor getNotes(String username) {
-        db = this.getWritableDatabase();
-        String sqlSelect = "SELECT " + TB2_COL_1 + ", " + TB2_COL_3 + ", " + TB2_COL_4 +
-                " FROM " + TABLE_2 + " WHERE username = ?";
-        Cursor userCursor = db.rawQuery(sqlSelect, new String[] {username});
-        return userCursor;
-    }
     public boolean deleteNote(int noteNo, String username) {
         db = this.getWritableDatabase();
         long results = db.delete(TABLE_2, TB2_COL_1 + " = ? AND " + TB3_COL_2 + " = ?", new String[] {Integer.toString(noteNo), username});
@@ -199,14 +180,6 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
             System.out.println("DELETED IN DB");
             return true;
         }
-    }
-    public int getLastRowId() {
-        db = this.getWritableDatabase();
-        String sql = "SELECT MAX(" + TB2_COL_1 + ") FROM " + TABLE_2;
-        Cursor cursor = db.rawQuery(sql, null);
-        cursor.moveToNext();
-        int max = cursor.getInt(0);
-        return max;
     }
     public boolean editNote(int noteNo, String username, String newTitle, String newContent) {
         db = this.getWritableDatabase();
@@ -224,5 +197,37 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
             System.out.println("Mission success");
             return true;
         }
+    }
+    public String getUserPassword(String username) {
+        db = this.getWritableDatabase();
+        String pw = null;
+        String sqlSelect = "SELECT password FROM " + TABLE_1 + " WHERE username = ?";
+        Cursor userCursor = db.rawQuery(sqlSelect, new String[] {username});
+
+        if (userCursor.getCount() == 0) {
+            return pw;
+        }
+        else {
+            while (userCursor.moveToNext()) {
+                pw = userCursor.getString(0);
+                System.out.println(pw);
+            }
+        }
+        userCursor.close();
+        return pw;
+    }
+    public Cursor getUserDetails(String username) {
+        db = this.getWritableDatabase();
+        String sqlSelect = "SELECT " + TB1_COL_3 + ", " + TB1_COL_4 + ", " + TB1_COL_5 + ", " + TB1_COL_6 +
+                " FROM " + TABLE_1 + " WHERE username = ?";
+        Cursor userCursor = db.rawQuery(sqlSelect, new String[] {username});
+        return userCursor;
+    }
+    public Cursor getNotes(String username) {
+        db = this.getWritableDatabase();
+        String sqlSelect = "SELECT " + TB2_COL_1 + ", " + TB2_COL_3 + ", " + TB2_COL_4 +
+                " FROM " + TABLE_2 + " WHERE username = ?";
+        Cursor userCursor = db.rawQuery(sqlSelect, new String[] {username});
+        return userCursor;
     }
 }
