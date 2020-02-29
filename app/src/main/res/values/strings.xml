@@ -5,17 +5,9 @@
     <string name="nav_header_title">Take Note</string>
     <string name="nav_header_subtitle">If you know something, take note!</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="user_display_profile">User Information</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
     <string name="menu_user_profile">User Profile</string>
-
-
     <string name="logout_label">Logout</string>
     <string name="login_label">Login</string>
     <string name="signup_label">Sign Up</string>
@@ -23,20 +15,12 @@
     <string name="pw_label">Password</string>
     <string name="un_hint">Enter username</string>
     <string name="pw_hint">Enter password</string>
-    <string name="back_button_label">Back</string>
     <string name="cancel_button_label">Cancel</string>
-    <string name="exit_label">Exit</string>
-    <string name="user_info_label">User info</string>
     <string name="settings_label">Settings</string>
     <string name="click_here_to_sign_up">Click here to sign up</string>
-    <string name="basic_information">Profile</string>
-    <string name="name">Name</string>
     <string name="address">Address</string>
-    <string name="birthdate">Birthdate</string>
     <string name="email">Email</string>
-    <string name="course">Course</string>
-    <string name="user_display_profile">User Display Profile</string>
-    <string name="about_us">About Us</string>
+    <string name="about_us">About</string>
     <string name="notes">Notes</string>
     <string name="reminders">Reminders</string>
     <string name="archive">Archive</string>
@@ -46,11 +30,10 @@
     <string name="enter_last_name">Enter last name</string>
     <string name="first_name">First Name</string>
     <string name="enter_first_name">Enter first name</string>
-    <string name="edit">Edit</string>
-    <string name="delete">Delete</string>
     <string name="dark_mode">Dark Mode</string>
     <string name="notifications">Notifications</string>
     <string name="save">Save</string>
+    <string name="help">Help</string>
 
     <string-array name="noteOptions">
         <item>Edit</item>

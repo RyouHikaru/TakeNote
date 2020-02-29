@@ -1,4 +1,4 @@
-package com.example.takenote.ui.user_profile;
+package com.example.takenote;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -31,10 +31,10 @@ public class UserProfileFragment extends Fragment {
 
         int[] set = myDb.getSettings();
         if (set[0] == 1) {
-            fnTV.setTextColor(getResources().getColor(R.color.default_whitish_color));
-            lnTV.setTextColor(getResources().getColor(R.color.default_whitish_color));
-            aTV.setTextColor(getResources().getColor(R.color.default_whitish_color));
-            eTV.setTextColor(getResources().getColor(R.color.default_whitish_color));
+            fnTV.setTextColor(getResources().getColor(R.color.white));
+            lnTV.setTextColor(getResources().getColor(R.color.white));
+            aTV.setTextColor(getResources().getColor(R.color.white));
+            eTV.setTextColor(getResources().getColor(R.color.white));
         }
 
         username = getActivity().getIntent().getStringExtra("UN");

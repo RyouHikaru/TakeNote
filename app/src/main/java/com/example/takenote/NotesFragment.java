@@ -1,4 +1,4 @@
-package com.example.takenote.ui.notes;
+package com.example.takenote;
 
 import android.app.Activity;
 import android.app.AlertDialog;

@@ -43,12 +43,14 @@ public class SettingsFragment extends Fragment {
             else if (set[0] == 1 && set[1] == 0) {
                 darkModeToggle.setChecked(true);
                 notificationsToggle.setChecked(false);
-                darkModeToggle.setTextColor(getResources().getColor(R.color.default_whitish_color));
-                notificationsToggle.setTextColor(getResources().getColor(R.color.default_whitish_color));
+                darkModeToggle.setTextColor(getResources().getColor(R.color.white));
+                notificationsToggle.setTextColor(getResources().getColor(R.color.white));
             }
             else {
                 darkModeToggle.setChecked(true);
                 notificationsToggle.setChecked(true);
+                darkModeToggle.setTextColor(getResources().getColor(R.color.white));
+                notificationsToggle.setTextColor(getResources().getColor(R.color.white));
             }
 
             saveButton.setOnClickListener(new View.OnClickListener() {

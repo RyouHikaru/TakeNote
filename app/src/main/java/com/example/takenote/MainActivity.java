@@ -16,9 +16,7 @@ import android.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 
 import com.example.takenote.ui.archive.ArchiveFragment;
-import com.example.takenote.ui.notes.NotesFragment;
 import com.example.takenote.ui.reminder.RemindersFragment;
-import com.example.takenote.ui.user_profile.UserProfileFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.drawerlayout.widget.DrawerLayout;
