@@ -25,6 +25,8 @@
         <activity android:name="com.example.takenote.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:hardwareAccelerated="true"/>
+        <activity android:name=".AboutActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

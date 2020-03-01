@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tn_bg2">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/appLogo"
+            android:layout_width="@dimen/hundredseventydp"
+            android:layout_height="@dimen/twohundreddp"
+            android:layout_marginTop="@dimen/sixtydp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/tn_icon_xl" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/twohundredfortydp"
+            android:layout_height="@dimen/sixtydp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appLogo"
+            app:srcCompat="@drawable/tn_text" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            android:layout_marginStart="@dimen/twentysixdp"
+            android:layout_marginEnd="@dimen/twentysixdp"
+            tools:layout_editor_absoluteX="0dp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="@dimen/twentydp"
+                android:text="Description:\nA note-taking app made simple for students"
+                android:textSize="@dimen/eighteensp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="@dimen/tendp"
+                android:text="Prototype Version: \n3.0"
+                android:textSize="@dimen/eighteensp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="@dimen/tendp"
+                android:text="Features:\nKeep notes in an orderly linear fashion.\nDark mode and Notifications.\nUser-friendly UI."
+                android:textSize="@dimen/eighteensp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="@dimen/tendp"
+                android:text="Developer: \nCarl James M. Reblora"
+                android:textSize="@dimen/eighteensp" />
+
+            <Button
+                android:id="@+id/about_returnButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Return"
+                android:background="@drawable/inner_button_design"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/fortydp"
+                android:layout_marginBottom="@dimen/fortydp"/>
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
