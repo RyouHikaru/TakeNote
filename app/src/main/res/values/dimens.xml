@@ -8,6 +8,7 @@
 
     <!-- SP -->
     <dimen name="twelvesp">12sp</dimen>
+    <dimen name="help_paragraph_size">16sp</dimen>
     <dimen name="eighteensp">18sp</dimen>
     <dimen name="twentysp">20sp</dimen>
 
@@ -22,9 +23,11 @@
     <dimen name="fiftydp">50dp</dimen>
     <dimen name="sixtydp">60dp</dimen>
     <dimen name="seventysevendp">77dp</dimen>
+    <dimen name="eightyfourdp">84dp</dimen>
     <dimen name="hundreddp">100dp</dimen>
     <dimen name="hundredfortysevendp">147dp</dimen>
     <dimen name="hundredseventydp">170dp</dimen>
+    <dimen name="hundredseventysevendp">177dp</dimen>
     <dimen name="twohundreddp">200dp</dimen>
     <dimen name="twohundredfortydp">240dp</dimen>
     <dimen name="twohundredsixtydp">260dp</dimen>

@@ -12,13 +12,13 @@
 
         <ImageView
             android:id="@+id/appLogo"
-            android:layout_width="@dimen/hundredseventydp"
-            android:layout_height="@dimen/twohundreddp"
-            android:layout_marginTop="@dimen/sixtydp"
+            android:layout_width="@dimen/hundredfortysevendp"
+            android:layout_height="@dimen/hundredfortysevendp"
+            android:layout_marginTop="@dimen/tendp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3"
             app:srcCompat="@drawable/tn_icon_xl" />
 
         <ImageView
@@ -40,52 +40,93 @@
             tools:layout_editor_absoluteX="0dp">
 
             <TextView
-                android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/tendp"
                 android:gravity="center"
                 android:paddingBottom="@dimen/twentydp"
-                android:text="Description:\nA note-taking app made simple for students"
+                android:text="@string/nav_header_subtitle"
                 android:textSize="@dimen/eighteensp" />
 
             <TextView
-                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="@dimen/help_paragraph_size"
+                android:text="@string/about_description"
+                android:textSize="@dimen/eighteensp" />
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingBottom="@dimen/tendp"
-                android:text="Prototype Version: \n3.0"
+                android:text="@string/about_features1"
+                android:textStyle="bold"
+                android:textSize="@dimen/twentysp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:text="@string/about_features2"
                 android:textSize="@dimen/eighteensp" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:text="@string/about_features3"
+                android:textSize="@dimen/eighteensp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="@dimen/help_paragraph_size"
+                android:text="@string/about_features4"
+                android:textSize="@dimen/eighteensp" />
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingBottom="@dimen/tendp"
-                android:text="Features:\nKeep notes in an orderly linear fashion.\nDark mode and Notifications.\nUser-friendly UI."
-                android:textSize="@dimen/eighteensp" />
+                android:text="@string/developer"
+                android:textStyle="bold"
+                android:textSize="@dimen/twentysp" />
 
             <TextView
-                android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingBottom="@dimen/tendp"
-                android:text="Developer: \nCarl James M. Reblora"
+                android:text="@string/about_developer"
                 android:textSize="@dimen/eighteensp" />
 
             <Button
                 android:id="@+id/about_returnButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Return"
-                android:background="@drawable/inner_button_design"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/fortydp"
-                android:layout_marginBottom="@dimen/fortydp"/>
+                android:layout_marginBottom="@dimen/fortydp"
+                android:background="@drawable/inner_button_design"
+                android:text="@string/return_label" />
 
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="@dimen/hundredseventydp"
+            android:layout_height="@dimen/eightyfourdp"
+            android:layout_marginTop="@dimen/fortydp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/about_text" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

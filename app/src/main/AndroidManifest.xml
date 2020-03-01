@@ -27,6 +27,8 @@
             android:hardwareAccelerated="true"/>
         <activity android:name=".AboutActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".HelpActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

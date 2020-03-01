@@ -163,6 +163,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(i);
                 return true;
             case R.id.action_help:
+                Intent j = new Intent(MainActivity.this, HelpActivity.class);
+                startActivity(j);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

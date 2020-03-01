@@ -120,8 +120,8 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="177dp"
-            android:layout_height="84dp"
+            android:layout_width="@dimen/hundredseventysevendp"
+            android:layout_height="@dimen/eightyfourdp"
             android:contentDescription="@string/signup_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
