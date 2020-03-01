@@ -24,8 +24,9 @@ public class UserProfileFragment extends Fragment {
         aTV = root.findViewById(R.id.addressTextView);
         eTV = root.findViewById(R.id.emailTextView);
         myDb = new TakeNoteDatabase(getActivity());
+        username = getActivity().getIntent().getStringExtra("UN");
 
-        int[] set = myDb.getSettings();
+        int[] set = myDb.getUserSettings(username);
         if (set[0] == 1) {
             fnTV.setTextColor(getResources().getColor(R.color.white));
             lnTV.setTextColor(getResources().getColor(R.color.white));
@@ -33,8 +34,6 @@ public class UserProfileFragment extends Fragment {
             eTV.setTextColor(getResources().getColor(R.color.white));
         }
 
-        username = getActivity().getIntent().getStringExtra("UN");
-        System.out.println(username);
 
         userCursor = myDb.getUserDetails(username);
         if (userCursor == null) {

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/generalTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="General"
+            android:textStyle="bold"
+            android:textSize="@dimen/twentysp"
+            android:padding="@dimen/twentysixdp"/>
+        <Switch
+            android:id="@+id/darkModeSwitch"
+            android:layout_width="@dimen/twohundredsixtydp"
+            android:layout_height="@dimen/twentysixdp"
+            android:layout_gravity="center"
+            android:text="@string/dark_mode"
+            android:textSize="@dimen/eighteensp"/>
+        <Switch
+            android:id="@+id/notificationSwitch"
+            android:layout_width="@dimen/twohundredsixtydp"
+            android:layout_height="@dimen/twentysixdp"
+            android:layout_marginTop="@dimen/tendp"
+            android:layout_gravity="center"
+            android:text="@string/notifications"
+            android:textSize="@dimen/eighteensp"/>
+        <TextView
+            android:id="@+id/accountTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Account"
+            android:textStyle="bold"
+            android:textSize="@dimen/twentysp"
+            android:padding="@dimen/twentysixdp"/>
+        <EditText
+            android:id="@+id/s_firstname"
+            android:layout_width="@dimen/twohundredsixtydp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="New First Name"
+            android:textSize="@dimen/eighteensp"/>
+        <EditText
+            android:id="@+id/s_lastname"
+            android:layout_width="@dimen/twohundredsixtydp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="New Last Name"
+            android:textSize="@dimen/eighteensp"/>
+        <EditText
+            android:id="@+id/s_address"
+            android:layout_width="@dimen/twohundredsixtydp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="New Address"
+            android:textSize="@dimen/eighteensp"/>
+        <EditText
+            android:id="@+id/s_email"
+            android:layout_width="@dimen/twohundredsixtydp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="New Email"
+            android:textSize="@dimen/eighteensp"
+            android:inputType="textEmailAddress"/>
+        <EditText
+            android:id="@+id/s_pw"
+            android:layout_width="@dimen/twohundredsixtydp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="New Password"
+            android:textSize="@dimen/eighteensp"
+            android:inputType="textPassword"/>
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/inner_button_design"
+            android:text="@string/save"
+            android:layout_marginTop="@dimen/twentysixdp"
+            android:layout_marginBottom="@dimen/twentysixdp"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+</ScrollView>

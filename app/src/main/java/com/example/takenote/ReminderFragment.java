@@ -15,13 +15,13 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.HashMap;
 
@@ -38,12 +38,10 @@ public class ReminderFragment extends Fragment {
     private FloatingActionButton addButton;
     private Context contextThemeWrapper;
     private String reminderTitle, reminderContent, un;
-    private View.OnLongClickListener longClickListener;
     private HashMap hm;
     // endregion
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        System.out.println("ON CREATE");
         // region Mapping of Objects
         hm = new HashMap();
         textViewId = 1;
@@ -56,11 +54,10 @@ public class ReminderFragment extends Fragment {
         bundle = getActivity().getIntent().getExtras();
         myDb = new TakeNoteDatabase(getActivity().getApplicationContext());
         un = bundle.getString("UN");
-//        System.out.println(un);
         // endregion
 
         try {
-            retrieveRemindersFromDatabase();    // retrieve the notes stored in database
+            retrieveRemindersFromDatabase();    // retrieve the reminders stored in database
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -83,7 +80,6 @@ public class ReminderFragment extends Fragment {
     }
     public void openEditDialog(int textViewId) {
         try {
-//            System.out.println("HashMap: " + hm.get(textViewId)); CLEAR
             EditNoteDialog dialog = new EditNoteDialog();
             Bundle bundle = new Bundle();
             bundle.putInt("ID", textViewId);
@@ -135,11 +131,8 @@ public class ReminderFragment extends Fragment {
         }
         while (cursor.moveToNext()) {
             int reminderNumber = cursor.getInt(0);
-//            System.out.println(reminderNumber);
             reminderTitle = cursor.getString(1);
-//            System.out.println(cursor.getString(1));
             reminderContent = cursor.getString(2);
-//            System.out.println(cursor.getString(2));
             System.out.println("ID: " + textViewId + " reminderNumber: " + reminderNumber);
             hm.put(textViewId, reminderNumber);
             System.out.println("HMAP: " + hm);
@@ -163,8 +156,6 @@ public class ReminderFragment extends Fragment {
         });
         linearLayout.addView(anotherTextView);
         anotherTextView.setId(textViewId);
-//        System.out.println("TV ID: " + anotherTextView.getId());
-//        System.out.println(linearLayout.findViewById(textViewId));
 
         anotherTextView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -184,9 +175,15 @@ public class ReminderFragment extends Fragment {
                                                 boolean isDeleted = myDb.deleteReminder(Integer.parseInt(hm.get(anotherTextView.getId()).toString()), un);
                                                 linearLayout.removeView(anotherTextView);
                                                 if (isDeleted == true) {
-                                                    Toast.makeText(getActivity().getApplicationContext(), "Note Deleted", Toast.LENGTH_SHORT).show();
+                                                    Snackbar snackbar = Snackbar.make(root, "Reminder Deleted", Snackbar.LENGTH_LONG);
+                                                    snackbar.setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE);
+                                                    snackbar.show();
+//                                                    Toast.makeText(getActivity().getApplicationContext(), "Note Deleted", Toast.LENGTH_SHORT).show();
                                                 } else {
-                                                    Toast.makeText(getActivity().getApplicationContext(), "Note not Deleted", Toast.LENGTH_SHORT).show();
+                                                    Snackbar snackbar = Snackbar.make(root, "Reminder Not Deleted", Snackbar.LENGTH_LONG);
+                                                    snackbar.setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE);
+                                                    snackbar.show();
+//                                                    Toast.makeText(getActivity().getApplicationContext(), "Note not Deleted", Toast.LENGTH_SHORT).show();
                                                 }
                                                 break;
                                         }
@@ -213,10 +210,14 @@ public class ReminderFragment extends Fragment {
 
                     boolean isInserted = myDb.insertReminder(un, reminderTitle, reminderContent);
                     if (isInserted == true) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Reminder Added", Toast.LENGTH_SHORT).show();
+                        Snackbar snackbar = Snackbar.make(root, "Reminder Added", Snackbar.LENGTH_LONG);
+                        snackbar.setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE);
+                        snackbar.show();
                     }
                     else {
-                        Toast.makeText(getActivity().getApplicationContext(), "Reminder Not Added", Toast.LENGTH_SHORT).show();
+                        Snackbar snackbar = Snackbar.make(root, "Reminder Not Added", Snackbar.LENGTH_LONG);
+                        snackbar.setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE);
+                        snackbar.show();
                     }
                     int reminderNo = myDb.getRemindersLastRowId();
                     hm.put(textViewId, reminderNo);
@@ -232,15 +233,16 @@ public class ReminderFragment extends Fragment {
                         reminderContent = bundle.getString("CONTENT");
                         int id = Integer.parseInt(hm.get(forEditTextViewId).toString());
 
-//                        System.out.println("TVID: " + forEditTextViewId
-//                        + "\nNEWTITLE: " + reminderTitle
-//                        + "\nNEWCONTENT: " + reminderContent);    CLEAR
 
                         boolean isEdited = myDb.editReminder(id, un, reminderTitle, reminderContent);
                         if (isEdited == true) {
-                            Toast.makeText(getActivity().getApplicationContext(), "Reminder Edited", Toast.LENGTH_SHORT).show();
+                            Snackbar snackbar = Snackbar.make(root, "Reminder Edited", Snackbar.LENGTH_LONG);
+                            snackbar.setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE);
+                            snackbar.show();
                         } else {
-                            Toast.makeText(getActivity().getApplicationContext(), "Reminder Not Edited", Toast.LENGTH_SHORT).show();
+                            Snackbar snackbar = Snackbar.make(root, "Reminder Not Edited", Snackbar.LENGTH_LONG);
+                            snackbar.setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE);
+                            snackbar.show();
                         }
                         TextView thisTextView = linearLayout.findViewById(forEditTextViewId);
                         thisTextView.setText(reminderTitle);

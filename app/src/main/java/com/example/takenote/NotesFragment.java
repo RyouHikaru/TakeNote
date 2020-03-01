@@ -22,6 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.HashMap;
 
@@ -185,9 +186,15 @@ public class NotesFragment extends Fragment {
                                                 boolean isDeleted = myDb.deleteNote(Integer.parseInt(hm.get(anotherTextView.getId()).toString()), un);
                                                 linearLayout.removeView(anotherTextView);
                                                 if (isDeleted == true) {
-                                                    Toast.makeText(getActivity().getApplicationContext(), "Note Deleted", Toast.LENGTH_SHORT).show();
+                                                    Snackbar snackbar = Snackbar.make(root, "Note deleted", Snackbar.LENGTH_LONG);
+                                                    snackbar.setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE);
+                                                    snackbar.show();
+//                                                    Toast.makeText(getActivity().getApplicationContext(), "Note Deleted", Toast.LENGTH_SHORT).show();
                                                 } else {
-                                                    Toast.makeText(getActivity().getApplicationContext(), "Note not Deleted", Toast.LENGTH_SHORT).show();
+                                                    Snackbar snackbar = Snackbar.make(root, "Note not deleted", Snackbar.LENGTH_LONG);
+                                                    snackbar.setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE);
+                                                    snackbar.show();
+//                                                    Toast.makeText(getActivity().getApplicationContext(), "Note not Deleted", Toast.LENGTH_SHORT).show();
                                                 }
                                                 break;
                                         }
@@ -214,10 +221,16 @@ public class NotesFragment extends Fragment {
 
                     boolean isInserted = myDb.insertNote(un, noteTitle, noteContent);
                     if (isInserted == true) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Note Added", Toast.LENGTH_SHORT).show();
+                        Snackbar snackbar = Snackbar.make(root, "Note added", Snackbar.LENGTH_LONG);
+                        snackbar.setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE);
+                        snackbar.show();
+//                        Toast.makeText(getActivity().getApplicationContext(), "Note Added", Toast.LENGTH_SHORT).show();
                     }
                     else {
-                        Toast.makeText(getActivity().getApplicationContext(), "Note Not Added", Toast.LENGTH_SHORT).show();
+                        Snackbar snackbar = Snackbar.make(root, "Note not added", Snackbar.LENGTH_LONG);
+                        snackbar.setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE);
+                        snackbar.show();
+//                        Toast.makeText(getActivity().getApplicationContext(), "Note Not Added", Toast.LENGTH_SHORT).show();
                     }
                     int noteNo = myDb.getNotesLastRowId();
                     hm.put(textViewId, noteNo);
@@ -239,9 +252,15 @@ public class NotesFragment extends Fragment {
 
                         boolean isEdited = myDb.editNote(id, un, noteTitle, noteContent);
                         if (isEdited == true) {
-                            Toast.makeText(getActivity().getApplicationContext(), "Note Edited", Toast.LENGTH_SHORT).show();
+                            Snackbar snackbar = Snackbar.make(root, "Note Edited", Snackbar.LENGTH_LONG);
+                            snackbar.setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE);
+                            snackbar.show();
+//                            Toast.makeText(getActivity().getApplicationContext(), "Note Edited", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(getActivity().getApplicationContext(), "Note Not Edited", Toast.LENGTH_SHORT).show();
+                            Snackbar snackbar = Snackbar.make(root, "Note not Edited", Snackbar.LENGTH_LONG);
+                            snackbar.setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE);
+                            snackbar.show();
+//                            Toast.makeText(getActivity().getApplicationContext(), "Note Not Edited", Toast.LENGTH_SHORT).show();
                         }
                         TextView thisTextView = linearLayout.findViewById(forEditTextViewId);
                         thisTextView.setText(noteTitle);

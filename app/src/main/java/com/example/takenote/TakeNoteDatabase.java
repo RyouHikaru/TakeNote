@@ -19,6 +19,8 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
     private static final String TB1_COL_4 = "last_name";
     private static final String TB1_COL_5 = "location";
     private static final String TB1_COL_6 = "email";
+    private static final String TB1_COL_7 = "dark_mode";
+    private static final String TB1_COL_8 = "notifications";
 
     private static final String TB2_COL_1 = "note_no";
     private static final String TB2_COL_2 = "username";
@@ -41,7 +43,8 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String createUsersTable = "CREATE TABLE " + TABLE_1 + " (" + TB1_COL_1 + " TEXT PRIMARY KEY, " +
                 TB1_COL_2 + " TEXT, " + TB1_COL_3 + " TEXT, " + TB1_COL_4 + " TEXT, " +
-                TB1_COL_5 + " TEXT, " + TB1_COL_6 + " TEXT)";
+                TB1_COL_5 + " TEXT, " + TB1_COL_6 + " TEXT, " + TB1_COL_7 + " INTEGER, " +
+                TB1_COL_8 + " INTEGER)";
         String createNotesTable = "CREATE TABLE " + TABLE_2 + " (" + TB2_COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 TB2_COL_2 + " TEXT NOT NULL, " + TB2_COL_3 + " TEXT, " +
                 TB2_COL_4 + " TEXT)";
@@ -55,23 +58,6 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
         System.out.println("Notes Table Created");
         db.execSQL(createRemindersTable);
         System.out.println("Reminders Table Created");
-
-        // DEFAULT SETTINGS
-        db.execSQL("CREATE TABLE settings (dark_mode INTEGER, notifications INTEGER)");
-        System.out.println("Settings Table Created");
-
-        try {
-            ContentValues cv = new ContentValues();
-            cv.put("dark_mode", 0);
-            cv.put("notifications", 0);
-            long results = db.insert("settings", null, cv);
-            if (results == -1)
-                System.out.println("Not set");
-            else
-                System.out.println("Set");
-        }catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -83,18 +69,21 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
         db.execSQL(dropNotesTable);
         db.execSQL(dropRemindersTable);
     }
-    public void editSettings(int d, int n) {
+    public void editSettings(String un, int d, int n) {
         db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put("dark_mode", d);
-        cv.put("notifications", n);
+        String whereClause = TB1_COL_1 + " = ?";
+        cv.put(TB1_COL_7, d);
+        cv.put(TB1_COL_8, n);
 
-        db.update("settings", cv, null, null);
+        db.update(TABLE_1, cv, whereClause, new String[] {un});
         System.out.println("Settings updated in DB");
     }
-    public int[] getSettings() {
+    public int[] getUserSettings(String un) {
         db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM settings", null);
+        String sql = "SELECT " + TB1_COL_7 + ", " + TB1_COL_8 + " FROM " + TABLE_1 + " WHERE " + TB1_COL_1 + " = ?";
+        Cursor cursor = db.rawQuery(sql, new String[] {un});
+
         cursor.moveToNext();
         int d = cursor.getInt(0);
         int n = cursor.getInt(1);
@@ -128,10 +117,8 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
         contentValues.put(TB1_COL_4, last_name);
         contentValues.put(TB1_COL_5, address);
         contentValues.put(TB1_COL_6, email);
-
-        System.out.println("UN: " + username + "\nPW: " + password +
-                "\nFN: " + first_name + "\nLN: " + last_name + "\nADD: " +
-                address + "\nEMAIL: " + email);
+        contentValues.put(TB1_COL_7, 0);
+        contentValues.put(TB1_COL_8, 1);
 
         long insertResult = db.insert(TABLE_1, null, contentValues);
         if (insertResult == -1) {
@@ -254,6 +241,33 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
             System.out.println("Mission success");
             return true;
         }
+    }
+    public boolean editUser(String username, String newPw, String newFn, String newLn, String newAdd, String newEmail) {
+        db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        if (!newPw.isEmpty())
+            contentValues.put(TB1_COL_2, newPw);
+        if (!newFn.isEmpty())
+            contentValues.put(TB1_COL_3, newFn);
+        if (!newLn.isEmpty())
+            contentValues.put(TB1_COL_4, newLn);
+        if (!newAdd.isEmpty())
+            contentValues.put(TB1_COL_5, newAdd);
+        if (!newEmail.isEmpty())
+            contentValues.put(TB1_COL_6, newEmail);
+
+        if (!(contentValues.size() == 0)) {
+            long results = db.update(TABLE_1, contentValues, TB1_COL_1 + " = ?", new String[]{username});
+
+            if (results == -1) {
+                System.out.println("User update failed");
+                return false;
+            } else {
+                System.out.println("User update success");
+                return true;
+            }
+        }
+        return true;
     }
     public String getUserPassword(String username) {
         db = this.getWritableDatabase();

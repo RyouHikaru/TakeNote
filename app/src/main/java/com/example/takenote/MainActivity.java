@@ -16,8 +16,8 @@ import android.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 
 import com.example.takenote.ui.archive.ArchiveFragment;
-import com.example.takenote.ui.reminder.RemindersFragment;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -36,13 +36,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar toolbar;
     private static DialogInterface.OnShowListener dialogListener;
     private static TakeNoteDatabase myDb;
+    private static String username;
     // endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         myDb = new TakeNoteDatabase(this);
-        settings = myDb.getSettings();
+        username = getIntent().getStringExtra("UN");
+        settings = myDb.getUserSettings(username);
 
         if (settings[0] == 0)
             setContentView(R.layout.activity_main_light);
@@ -51,9 +53,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
+        Snackbar snackbar = Snackbar.make(drawer, "Welcome back!", Snackbar.LENGTH_LONG);
+        snackbar.setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE);
+        snackbar.show();
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer,
                 toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -177,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
     public void showLogoutDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this, R.style.DialogStyle);
-        alertDialogBuilder.setTitle("Confirm Logout?");
+        alertDialogBuilder.setTitle("Confirmation");
         alertDialogBuilder.setMessage("Are you sure you want to logout?");
         alertDialogBuilder.setCancelable(true);
 

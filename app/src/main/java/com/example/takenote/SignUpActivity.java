@@ -221,7 +221,7 @@ public class SignUpActivity extends AppCompatActivity {
                 boolean isInserted = myDb.signUp(un, pw, fn, ln, a, em);
 
                 if (isInserted == true) {
-                    Toast.makeText(SignUpActivity.this, "Signup Success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "Signup Success. Will go to Login screen", Toast.LENGTH_SHORT).show();
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {

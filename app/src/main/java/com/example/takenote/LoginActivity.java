@@ -15,8 +15,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Objects;
-
 
 public class LoginActivity extends AppCompatActivity {
     // region Object and Variables
@@ -41,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         unEditText = findViewById(R.id.unEditText);
         pwEditText = findViewById(R.id.pwEditText);
         myDb = new TakeNoteDatabase(this);
-        settings = myDb.getSettings();
         // endregion
 
         // region loginButton listener
@@ -64,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 else {
+                    settings = myDb.getUserSettings(un);
                     String pwKey = myDb.getUserPassword(un);
 
                     if (pw.equals(pwKey)) {
@@ -72,24 +70,6 @@ public class LoginActivity extends AppCompatActivity {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                if (settings[1] == 1) {
-                                    // region TESTING INTENT FOR NOTIFICATION
-                                    Intent i = new Intent();
-                                    PendingIntent pi = PendingIntent.getActivity(LoginActivity.this, 70, i, PendingIntent.FLAG_UPDATE_CURRENT);
-                                    Notification.Builder builder = new Notification.Builder(LoginActivity.this);
-                                    builder.setSmallIcon(R.drawable.ic_notifications_white_24dp)
-                                            .setContentTitle("WELCOME BACK!")
-                                            .setContentText("What do you have to share?")
-                                            .setWhen(System.currentTimeMillis())
-                                            .setAutoCancel(true)
-                                            .setContentIntent(pi)
-                                            .setPriority(Notification.PRIORITY_MAX)
-                                            .setDefaults(Notification.DEFAULT_ALL);
-                                    NotificationManager nm = (NotificationManager) getApplication().getSystemService(Context.NOTIFICATION_SERVICE);
-                                    nm.notify(0, builder.build());
-                                    // endregion
-                                }
-
                                 intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.putExtra("UN", un);
                                 startActivity(intent);

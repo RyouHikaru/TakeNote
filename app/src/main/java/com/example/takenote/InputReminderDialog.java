@@ -15,13 +15,11 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class InputReminderDialog extends AppCompatDialogFragment {
     private EditText titleEditText, contentEditText, dateEditText, timeEditText;
@@ -55,7 +53,7 @@ public class InputReminderDialog extends AppCompatDialogFragment {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                dateEditText.setText(year + "/" + month + "/" + dayOfMonth);
+                                dateEditText.setText(month + "/" + dayOfMonth + "/" + year);
 
                                 c = Calendar.getInstance();
                                 mHour = c.get(Calendar.HOUR_OF_DAY);
@@ -78,27 +76,6 @@ public class InputReminderDialog extends AppCompatDialogFragment {
             }
         });
 
-//        timeButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                c = Calendar.getInstance();
-//                mHour = c.get(Calendar.HOUR_OF_DAY);
-//                mMin = c.get(Calendar.MINUTE);
-//
-//                TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), R.style.TimePickerTheme,
-//                        new TimePickerDialog.OnTimeSetListener() {
-//                            @Override
-//                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-//                                if (minute < 10)
-//                                    timeTextView.setText(hourOfDay + " : 0" + minute);
-//                                else
-//                                    timeTextView.setText(hourOfDay + " : " + minute);
-//                            }
-//                        }, mHour, mMin, false);
-//                timePickerDialog.show();
-//            }
-//        });
-
         builder.setView(view)
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
@@ -111,7 +88,6 @@ public class InputReminderDialog extends AppCompatDialogFragment {
                     public void onClick(DialogInterface dialog, int which) {
                         String title = titleEditText.getText().toString();
                         String content = contentEditText.getText().toString();
-//                        System.out.println(title + " " + content);
                         Intent i = new Intent().putExtra("TITLE", title).putExtra("CONTENT", content);
                         getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, i);
                         dismiss();
@@ -124,11 +100,9 @@ public class InputReminderDialog extends AppCompatDialogFragment {
         thisDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(final DialogInterface dialog) {
-                // Add or create your own background drawable for AlertDialog window
                 Window view = ((AlertDialog)dialog).getWindow();
                 view.setBackgroundDrawableResource(R.color.colorPrimary);
 
-                // Customize POSITIVE and NEUTRAL buttons.
                 Button positiveButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
                 positiveButton.setTextColor(getActivity().getApplicationContext().getResources().getColor(R.color.default_whitish_color));
                 positiveButton.invalidate();
