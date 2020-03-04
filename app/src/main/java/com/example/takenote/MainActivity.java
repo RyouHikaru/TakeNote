@@ -20,7 +20,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import android.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 
-import com.example.takenote.ui.archive.ArchiveFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -117,16 +116,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 replace(R.id.fragment_container, new UserProfileFragment()).commit();
                         Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.menu_user_profile);
                         break;
-                    case R.id.nav_reminder:
-                        getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).
-                                replace(R.id.fragment_container, new ReminderFragment()).commit();
-                        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.reminders);
-                        break;
-                    case R.id.nav_archive:
-                        getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).
-                                replace(R.id.fragment_container, new ArchiveFragment()).commit();
-                        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.archive);
-                        break;
                     case R.id.nav_settings:
                         getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).
                                 replace(R.id.fragment_container, new SettingsFragment()).commit();
@@ -183,12 +172,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_user_profile:
                 clickedNavItem = R.id.nav_user_profile;
-                break;
-            case R.id.nav_reminder:
-                clickedNavItem = R.id.nav_reminder;
-                break;
-            case R.id.nav_archive:
-                clickedNavItem = R.id.nav_archive;
                 break;
             case R.id.nav_settings:
                 clickedNavItem = R.id.nav_settings;
