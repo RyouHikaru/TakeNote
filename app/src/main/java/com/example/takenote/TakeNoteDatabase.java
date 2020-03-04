@@ -103,11 +103,11 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
 
         long insertResult = db.insert(TABLE_1, null, contentValues);
         if (insertResult == -1) {
-            System.out.println("Failed to insert");
+//            System.out.println("Failed to insert");
             return false;
         }
         else {
-            System.out.println("Successfully inserted");
+//            System.out.println("Successfully inserted");
             return true;
         }
     }
@@ -117,12 +117,12 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
         Cursor usernameCursor = db.rawQuery(sqlSelect, new String[] {username});
 
         if (usernameCursor.getCount() == 0) {
-            System.out.println("New user");
+//            System.out.println("New user");
             usernameCursor.close();
             return false;
         }
         else {
-            System.out.println("Existing user");
+//            System.out.println("Existing user");
             usernameCursor.close();
             return true;
         }
@@ -135,7 +135,7 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
         contentValues.put(TB2_COL_4, content);
 
         long insertResult = db.insert(TABLE_2, null, contentValues);
-        System.out.println(insertResult);
+//        System.out.println(insertResult);
         if (insertResult == -1) {
 //            System.out.println("Note not inserted");
             return false;
@@ -214,7 +214,7 @@ public class TakeNoteDatabase extends SQLiteOpenHelper {
         else {
             while (userCursor.moveToNext()) {
                 pw = userCursor.getString(0);
-                System.out.println(pw);
+//                System.out.println(pw);
             }
         }
         userCursor.close();

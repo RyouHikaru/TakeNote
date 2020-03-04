@@ -106,21 +106,24 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(LoginActivity.this, "Closing", Toast.LENGTH_SHORT).show();
-
-                if (settings[1] == 1) {
-                    Intent i = new Intent(LoginActivity.this, WelcomeActivity.class);
-                    PendingIntent pi = PendingIntent.getActivity(LoginActivity.this, 69, i, PendingIntent.FLAG_UPDATE_CURRENT);
-                    Notification.Builder builder = new Notification.Builder(LoginActivity.this);
-                    builder.setSmallIcon(R.drawable.ic_notifications_white_24dp)
-                            .setContentTitle("You can comeback anytime!")
-                            .setContentText("Click to Login. Swipe to ignore.")
-                            .setWhen(System.currentTimeMillis())
-                            .setAutoCancel(true)
-                            .setContentIntent(pi)
-                            .setPriority(Notification.PRIORITY_MAX)
-                            .setDefaults(Notification.DEFAULT_ALL);
-                    NotificationManager nm = (NotificationManager) getApplication().getSystemService(Context.NOTIFICATION_SERVICE);
-                    nm.notify(0, builder.build());
+                try {
+                    if (settings[1] == 1) {
+                        Intent i = new Intent(LoginActivity.this, WelcomeActivity.class);
+                        PendingIntent pi = PendingIntent.getActivity(LoginActivity.this, 69, i, PendingIntent.FLAG_UPDATE_CURRENT);
+                        Notification.Builder builder = new Notification.Builder(LoginActivity.this);
+                        builder.setSmallIcon(R.drawable.ic_notifications_white_24dp)
+                                .setContentTitle("You can comeback anytime!")
+                                .setContentText("Click to Login. Swipe to ignore.")
+                                .setWhen(System.currentTimeMillis())
+                                .setAutoCancel(true)
+                                .setContentIntent(pi)
+                                .setPriority(Notification.PRIORITY_MAX)
+                                .setDefaults(Notification.DEFAULT_ALL);
+                        NotificationManager nm = (NotificationManager) getApplication().getSystemService(Context.NOTIFICATION_SERVICE);
+                        nm.notify(0, builder.build());
+                    }
+                }catch (Exception e) {
+//                    System.out.println(e.getMessage());
                 }
                 finish();
             }
