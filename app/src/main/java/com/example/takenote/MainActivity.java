@@ -1,5 +1,9 @@
 package com.example.takenote;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,10 +51,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         username = getIntent().getStringExtra("UN");
         settings = myDb.getUserSettings(username);
 
-        if (settings[0] == 0)
-            setContentView(R.layout.activity_main_light);
-        else
-            setContentView(R.layout.activity_main_dark);
+        changeTheme();
+        showHelpNotification();
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -229,5 +231,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.setOnShowListener(dialogListener);
         alertDialog.show();
+    }
+    public void changeTheme() {
+        if (settings[0] == 0)
+            setContentView(R.layout.activity_main_light);
+        else
+            setContentView(R.layout.activity_main_dark);
+    }
+    public void showHelpNotification() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (settings[1] == 1) {
+                    Intent i = new Intent(MainActivity.this, HelpActivity.class);
+                    PendingIntent pi = PendingIntent.getActivity(MainActivity.this, 101, i, PendingIntent.FLAG_UPDATE_CURRENT);
+                    Notification.Builder builder = new Notification.Builder(MainActivity.this);
+                    builder.setSmallIcon(R.drawable.ic_notifications_white_24dp)
+                            .setContentTitle("Take Note")
+                            .setContentText("If you need some help. Click me.")
+                            .setWhen(System.currentTimeMillis())
+                            .setAutoCancel(true)
+                            .setContentIntent(pi)
+                            .setPriority(Notification.PRIORITY_HIGH)
+                            .setDefaults(Notification.DEFAULT_ALL);
+                    NotificationManager nm = (NotificationManager) getApplication().getSystemService(Context.NOTIFICATION_SERVICE);
+                    nm.notify(0, builder.build());
+                }
+            }
+        }, 10000);
     }
 }

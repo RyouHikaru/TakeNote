@@ -147,7 +147,7 @@ public class SettingsFragment extends Fragment {
                                 public void run() {
                                     System.exit(0);
                                 }
-                            }, 3000);
+                            }, 2000);
                         }
                     } catch (Exception e) {
                         System.out.println(e.getMessage());

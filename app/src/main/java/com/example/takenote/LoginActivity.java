@@ -70,6 +70,21 @@ public class LoginActivity extends AppCompatActivity {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
+                                if (settings[1] == 1) {
+                                    Intent i = new Intent();
+                                    PendingIntent pi = PendingIntent.getActivity(LoginActivity.this, 69, i, PendingIntent.FLAG_UPDATE_CURRENT);
+                                    Notification.Builder builder = new Notification.Builder(LoginActivity.this);
+                                    builder.setSmallIcon(R.drawable.ic_notifications_white_24dp)
+                                            .setContentTitle("Take Note")
+                                            .setContentText("Hi there! What do you want to share?")
+                                            .setWhen(System.currentTimeMillis())
+                                            .setAutoCancel(true)
+                                            .setContentIntent(pi)
+                                            .setPriority(Notification.PRIORITY_HIGH)
+                                            .setDefaults(Notification.DEFAULT_ALL);
+                                    NotificationManager nm = (NotificationManager) getApplication().getSystemService(Context.NOTIFICATION_SERVICE);
+                                    nm.notify(0, builder.build());
+                                }
                                 intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.putExtra("UN", un);
                                 startActivity(intent);
