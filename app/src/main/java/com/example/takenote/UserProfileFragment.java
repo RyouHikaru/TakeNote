@@ -37,7 +37,7 @@ public class UserProfileFragment extends Fragment {
 
         userCursor = myDb.getUserDetails(username);
         if (userCursor == null) {
-            System.out.println("userCursor is null");
+//            System.out.println("userCursor is null");
         }
         while(userCursor.moveToNext()) {
             fnTV.setText(fnTV.getText().toString() + ": " + userCursor.getString(0));

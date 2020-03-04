@@ -63,7 +63,7 @@ public class NotesFragment extends Fragment {
         try {
             retrieveNotesFromDatabase();    // retrieve the notes stored in database
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+//            System.out.println(e.getMessage());
         }
 
         layout.setMargins(40, 40, 40, 40);
@@ -95,7 +95,7 @@ public class NotesFragment extends Fragment {
             dialog.show(getActivity().getSupportFragmentManager(), "Note edit");
 
         }catch (Exception e) {
-            System.out.println(e.getMessage());
+//            System.out.println(e.getMessage());
         }
     }
     public void showItemDialog(String title, String content) {
@@ -133,7 +133,7 @@ public class NotesFragment extends Fragment {
         Cursor cursor = myDb.getNotes(un);
 
         if (cursor == null) {
-            System.out.println("userCursor is null");
+//            System.out.println("userCursor is null");
         }
         while (cursor.moveToNext()) {
             int noteNumber = cursor.getInt(0);
@@ -142,9 +142,9 @@ public class NotesFragment extends Fragment {
 //            System.out.println(cursor.getString(1));
             noteContent = cursor.getString(2);
 //            System.out.println(cursor.getString(2));
-            System.out.println("ID: " + textViewId + " noteNumber: " + noteNumber);
+//            System.out.println("ID: " + textViewId + " noteNumber: " + noteNumber);
             hm.put(textViewId, noteNumber);
-            System.out.println("HMAP: " + hm);
+//            System.out.println("HMAP: " + hm);
             addTextView(noteTitle, noteContent);
         }
     }
@@ -272,7 +272,7 @@ public class NotesFragment extends Fragment {
                         });
                     }
                 }catch (Exception e) {
-                    System.out.println(e.getMessage());
+//                    System.out.println(e.getMessage());
                 }
                 break;
         }

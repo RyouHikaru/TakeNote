@@ -150,12 +150,12 @@ public class SettingsFragment extends Fragment {
                             }, 2000);
                         }
                     } catch (Exception e) {
-                        System.out.println(e.getMessage());
+//                        System.out.println(e.getMessage());
                     }
                 }
             });
         }catch (Exception e) {
-            System.out.println(e.getMessage());
+//            System.out.println(e.getMessage());
         }
         return root;
     }
