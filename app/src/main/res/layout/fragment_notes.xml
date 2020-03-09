@@ -26,12 +26,12 @@
         android:id="@+id/notes_floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="@dimen/thirtyfivedp"
+        android:layout_marginBottom="@dimen/thirtyfivedp"
         android:clickable="true"
+        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_add_black_60dp"
-        android:focusable="true" />
+        app:srcCompat="@drawable/ic_add_black_60dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

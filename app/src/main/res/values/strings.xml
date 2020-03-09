@@ -3,19 +3,11 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Take Note</string>
-    <string name="nav_header_subtitle">If you know something, take note!</string>
+    <string name="nav_header_subtitle">&quot;If you know something, take note!&quot;</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="user_display_profile">User Information</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
     <string name="menu_user_profile">User Profile</string>
-
-
     <string name="logout_label">Logout</string>
     <string name="login_label">Login</string>
     <string name="signup_label">Sign Up</string>
@@ -23,20 +15,12 @@
     <string name="pw_label">Password</string>
     <string name="un_hint">Enter username</string>
     <string name="pw_hint">Enter password</string>
-    <string name="back_button_label">Back</string>
     <string name="cancel_button_label">Cancel</string>
-    <string name="exit_label">Exit</string>
-    <string name="user_info_label">User info</string>
     <string name="settings_label">Settings</string>
     <string name="click_here_to_sign_up">Click here to sign up</string>
-    <string name="basic_information">Profile</string>
-    <string name="name">Name</string>
     <string name="address">Address</string>
-    <string name="birthdate">Birthdate</string>
     <string name="email">Email</string>
-    <string name="course">Course</string>
-    <string name="user_display_profile">User Display Profile</string>
-    <string name="about_us">About Us</string>
+    <string name="about_us">About</string>
     <string name="notes">Notes</string>
     <string name="reminders">Reminders</string>
     <string name="archive">Archive</string>
@@ -46,7 +30,35 @@
     <string name="enter_last_name">Enter last name</string>
     <string name="first_name">First Name</string>
     <string name="enter_first_name">Enter first name</string>
-    <string name="edit">Edit</string>
-    <string name="delete">Delete</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="notifications">Notifications</string>
+    <string name="save">Save</string>
+    <string name="help">Help</string>
+    <string name="about_description">Take Note is a simple note-taking app designed for students.</string>
+    <string name="about_prototype">3.0</string>
+    <string name="about_features1">Features</string>
+    <string name="about_developer">Carl James M. Reblora</string>
+    <string name="return_label">Return</string>
+    <string name="adding_notes">Adding Notes</string>
+    <string name="editing_and_deleting_notes">Editing and Deleting Notes</string>
+    <string name="an_1">In adding notes, press the \"Add Button\" on the lower right in the Note Screen.</string>
+    <string name="an_2">It will then prompt an Input Dialog which you can input the Title and the Content of your note.</string>
+    <string name="an_3">Pressing \"OK\" will add your note on screen displaying its title. Pressing \"CANCEL\" will cancel your operation.</string>
+    <string name="edn_1">In order for you to edit or delete your note, first, long press your selected note to show the options.</string>
+    <string name="edn_2">Selecting the \"Edit\" option will prompt you an Input Dialog similar to when adding notes. Pressing \"OK\" will edit your note. Pressing \"CANCEL\" will cancel your operation.</string>
+    <string name="edn_3">Selecting the \"Delete\" option will instantly delete your note. Deleted notes cannot be retrieved so proceed with caution.</string>
+    <string name="s_1">In General settings, there are only two. The \"Dark Mode\" switch and \"Notifications\" switch.</string>
+    <string name="s_2">Dark Mode will let you set the color of the Main Interface to darker color. Notifications by default are enabled and will be noticeable whenever your close the app during Login.</string>
+    <string name="s_3">In Account settings, you can edit your User Profile. Leaving everything blank will cause no harm and is totally safe.</string>
+    <string name="s_4">If you want to edit some of your details, you are capable to do so.</string>
+    <string name="s_5">SETTINGS WILL ONLY BE APPLIED ONCE \"SAVE\"BUTTON IS CLICKED.</string>
+    <string name="about_features2">- Easy management of notes</string>
+    <string name="about_features3">- Simple and User-friendly UI</string>
+    <string name="about_features4">- Switch between Light/Dark Mode</string>
+    <string name="developer">Developer</string>
 
+    <string-array name="noteOptions">
+        <item>Edit</item>
+        <item>Delete</item>
+    </string-array>
 </resources>

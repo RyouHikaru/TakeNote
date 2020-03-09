@@ -1,6 +1,11 @@
 package com.example.takenote;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -15,11 +20,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import android.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 
-import com.example.takenote.ui.archive.ArchiveFragment;
-import com.example.takenote.ui.notes.NotesFragment;
-import com.example.takenote.ui.reminder.RemindersFragment;
-import com.example.takenote.ui.user_profile.UserProfileFragment;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -30,24 +32,34 @@ import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private int clickedNavItem;
-    private DrawerLayout drawer;
-    private NavigationView navigationView;
+    // region Object and Variables
+    private static int clickedNavItem;
+    private static int[] settings;
+    private static DrawerLayout drawer;
+    private static NavigationView navigationView;
     private Toolbar toolbar;
-    private DialogInterface.OnShowListener dialogListener;
+    private static DialogInterface.OnShowListener dialogListener;
+    private static TakeNoteDatabase myDb;
+    private static String username;
+    // endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        myDb = new TakeNoteDatabase(this);
+        username = getIntent().getStringExtra("UN");
+        settings = myDb.getUserSettings(username);
+
+        changeTheme();
+        showHelpNotification();
+
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
-
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        Snackbar snackbar = Snackbar.make(drawer, "Welcome back!", Snackbar.LENGTH_LONG);
+        snackbar.setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE);
+        snackbar.show();
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer,
                 toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -62,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.notes);
         }
 
+        // region dialogListener properties
         dialogListener = new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
@@ -81,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 negativeButton.invalidate();
             }
         };
+        // endregion
 
         drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
@@ -96,26 +110,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).
                                 replace(R.id.fragment_container, new NotesFragment()).commit();
                         Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.notes);
-
                         break;
                     case R.id.nav_user_profile:
                         getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).
                                 replace(R.id.fragment_container, new UserProfileFragment()).commit();
                         Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.menu_user_profile);
                         break;
-                    case R.id.nav_reminder:
+                    case R.id.nav_settings:
                         getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).
-                                replace(R.id.fragment_container, new RemindersFragment()).commit();
-                        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.reminders);
-                        break;
-                    case R.id.nav_archive:
-                        getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).
-                                replace(R.id.fragment_container, new ArchiveFragment()).commit();
-                        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.archive);
-                        break;
-                    case R.id.nav_share:
-                        showShareDialog();
-//                        Toast.makeText(MainActivity.this, "Sharing is caring", Toast.LENGTH_SHORT).show();
+                                replace(R.id.fragment_container, new SettingsFragment()).commit();
+                        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.settings_label);
                         break;
                     case R.id.nav_logout:
                         showLogoutDialog();
@@ -125,22 +129,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
     }
-
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else
+        }
+        else if (!drawer.isDrawerOpen(GravityCompat.START)) {
+            return;
+        }
+        else
             super.onBackPressed();
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.options_menu, menu);
         return true;
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_about:
+                Intent i = new Intent(MainActivity.this, AboutActivity.class);
+                startActivity(i);
+                return true;
+            case R.id.action_help:
+                Intent j = new Intent(MainActivity.this, HelpActivity.class);
+                startActivity(j);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -153,29 +173,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_user_profile:
                 clickedNavItem = R.id.nav_user_profile;
                 break;
-            case R.id.nav_reminder:
-                clickedNavItem = R.id.nav_reminder;
-                break;
-            case R.id.nav_archive:
-                clickedNavItem = R.id.nav_archive;
-                break;
-            case R.id.nav_share:
-                clickedNavItem = R.id.nav_share;
+            case R.id.nav_settings:
+                clickedNavItem = R.id.nav_settings;
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
     public void showLogoutDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this, R.style.DialogStyle);
-        alertDialogBuilder.setTitle("Confirm Logout?");
+        alertDialogBuilder.setTitle("Confirmation");
         alertDialogBuilder.setMessage("Are you sure you want to logout?");
         alertDialogBuilder.setCancelable(true);
 
         alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface arg0, int arg1) {
+            public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(MainActivity.this, "Logging out", Toast.LENGTH_SHORT).show();
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -188,7 +201,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(MainActivity.this,"No", Toast.LENGTH_SHORT).show();
+                return;
             }
         });
         alertDialogBuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
@@ -202,33 +215,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         alertDialog.setOnShowListener(dialogListener);
         alertDialog.show();
     }
-    public void showShareDialog() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this, R.style.DialogStyle);
-        alertDialogBuilder.setTitle("Share mo lang?");
-        alertDialogBuilder.setMessage("Are you sure you want to share?");
-        alertDialogBuilder.setCancelable(true);
-
-        alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+    public void changeTheme() {
+        if (settings[0] == 0)
+            setContentView(R.layout.activity_main_light);
+        else
+            setContentView(R.layout.activity_main_dark);
+    }
+    public void showHelpNotification() {
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(DialogInterface arg0, int arg1) {
-                Toast.makeText(MainActivity.this,"Shared", Toast.LENGTH_SHORT).show();
+            public void run() {
+                if (settings[1] == 1) {
+                    Intent i = new Intent(MainActivity.this, HelpActivity.class);
+                    PendingIntent pi = PendingIntent.getActivity(MainActivity.this, 101, i, PendingIntent.FLAG_UPDATE_CURRENT);
+                    Notification.Builder builder = new Notification.Builder(MainActivity.this);
+                    builder.setSmallIcon(R.drawable.ic_notifications_white_24dp)
+                            .setContentTitle("Take Note")
+                            .setContentText("If you need some help. Click me.")
+                            .setWhen(System.currentTimeMillis())
+                            .setAutoCancel(true)
+                            .setContentIntent(pi)
+                            .setPriority(Notification.PRIORITY_HIGH)
+                            .setDefaults(Notification.DEFAULT_ALL);
+                    NotificationManager nm = (NotificationManager) getApplication().getSystemService(Context.NOTIFICATION_SERVICE);
+                    nm.notify(0, builder.build());
+                }
             }
-        });
-        alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(MainActivity.this,"Not shared", Toast.LENGTH_SHORT).show();
-            }
-        });
-        alertDialogBuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getApplicationContext(),"Cancelled",Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.setOnShowListener(dialogListener);
-        alertDialog.show();
+        }, 10000);
     }
 }

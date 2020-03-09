@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tn_bg2">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/appLogo"
+            android:layout_width="@dimen/hundredfortysevendp"
+            android:layout_height="@dimen/hundredfortysevendp"
+            android:layout_marginTop="@dimen/tendp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            app:srcCompat="@drawable/tn_icon_xl" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/twohundredfortydp"
+            android:layout_height="@dimen/sixtydp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appLogo"
+            app:srcCompat="@drawable/tn_text" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            android:layout_marginStart="@dimen/twentysixdp"
+            android:layout_marginEnd="@dimen/twentysixdp"
+            tools:layout_editor_absoluteX="0dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/tendp"
+                android:gravity="center"
+                android:paddingBottom="@dimen/twentydp"
+                android:text="@string/nav_header_subtitle"
+                android:textSize="@dimen/eighteensp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="@dimen/help_paragraph_size"
+                android:text="@string/about_description"
+                android:textSize="@dimen/eighteensp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="@dimen/tendp"
+                android:text="@string/about_features1"
+                android:textStyle="bold"
+                android:textSize="@dimen/twentysp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:text="@string/about_features2"
+                android:textSize="@dimen/eighteensp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:text="@string/about_features3"
+                android:textSize="@dimen/eighteensp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="@dimen/help_paragraph_size"
+                android:text="@string/about_features4"
+                android:textSize="@dimen/eighteensp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="@dimen/tendp"
+                android:text="@string/developer"
+                android:textStyle="bold"
+                android:textSize="@dimen/twentysp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="@dimen/tendp"
+                android:text="@string/about_developer"
+                android:textSize="@dimen/eighteensp" />
+
+            <Button
+                android:id="@+id/about_returnButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/fortydp"
+                android:layout_marginBottom="@dimen/fortydp"
+                android:background="@drawable/inner_button_design"
+                android:text="@string/return_label" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="@dimen/hundredseventydp"
+            android:layout_height="@dimen/eightyfourdp"
+            android:layout_marginTop="@dimen/fortydp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/about_text" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

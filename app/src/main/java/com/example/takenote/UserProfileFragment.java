@@ -1,4 +1,4 @@
-package com.example.takenote.ui.user_profile;
+package com.example.takenote;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -9,17 +9,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
-
-import com.example.takenote.R;
-import com.example.takenote.TakeNoteDatabase;
 
 public class UserProfileFragment extends Fragment {
-    private TakeNoteDatabase myDb;
+    private static TakeNoteDatabase myDb;
     private View root;
-    private Cursor userCursor;
+    private static Cursor userCursor;
     private TextView fnTV, lnTV, aTV, eTV;
-    private String username;
+    private static String username;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_user_profile, container, false);
@@ -28,13 +24,20 @@ public class UserProfileFragment extends Fragment {
         aTV = root.findViewById(R.id.addressTextView);
         eTV = root.findViewById(R.id.emailTextView);
         myDb = new TakeNoteDatabase(getActivity());
-
         username = getActivity().getIntent().getStringExtra("UN");
-        System.out.println(username);
+
+        int[] set = myDb.getUserSettings(username);
+        if (set[0] == 1) {
+            fnTV.setTextColor(getResources().getColor(R.color.white));
+            lnTV.setTextColor(getResources().getColor(R.color.white));
+            aTV.setTextColor(getResources().getColor(R.color.white));
+            eTV.setTextColor(getResources().getColor(R.color.white));
+        }
+
 
         userCursor = myDb.getUserDetails(username);
         if (userCursor == null) {
-            System.out.println("userCursor is null");
+//            System.out.println("userCursor is null");
         }
         while(userCursor.moveToNext()) {
             fnTV.setText(fnTV.getText().toString() + ": " + userCursor.getString(0));
